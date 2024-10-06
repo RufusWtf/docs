@@ -13,11 +13,6 @@ type EmbedProps = {
      * The description of the embed.
      */
     description: string;
-
-    /**
-     * The optional thumbnail image of the embed.
-     */
-    thumbnail?: string;
 };
 
 /**
@@ -26,24 +21,12 @@ type EmbedProps = {
  * @param props the embed props
  * @returns the embed jsx
  */
-const Embed = ({
-    title,
-    description,
-    thumbnail = "",
-}: EmbedProps): Metadata => {
+const Embed = ({ title, description }: EmbedProps): Metadata => {
     return {
         title: title,
         openGraph: {
             title: `${title}`,
             description: description,
-            images: [
-                {
-                    url: thumbnail,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary",
         },
     };
 };

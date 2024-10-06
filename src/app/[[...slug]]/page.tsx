@@ -12,6 +12,7 @@ import {
 import { capitalizeWords } from "@/lib/string";
 import { Metadata } from "next";
 import Embed from "@/components/embed";
+import DocsFooter from "@/components/docs-footer";
 
 /**
  * The page to render the documentation markdown content.
@@ -28,17 +29,18 @@ const DocsPage = async ({
     );
 
     // Get the content to display based on the provided slug
-    const content: DocsContentMetadata | undefined = getDocsContent().find(
+    const pages: DocsContentMetadata[] = getDocsContent();
+    const page: DocsContentMetadata | undefined = pages.find(
         (metadata: DocsContentMetadata): boolean =>
             metadata.slug === (slug || "intro")
     );
-    if (!content) {
+    if (!page) {
         notFound();
     }
-    const splitSlug: string[] = content.slug?.split("/") || [];
+    const splitSlug: string[] = page.slug?.split("/") || [];
 
     return (
-        <main className="flex flex-col">
+        <main className="w-full flex flex-col">
             {/* Breadcrumb */}
             <Breadcrumb className="pt-4 select-none">
                 <BreadcrumbList>
@@ -68,7 +70,10 @@ const DocsPage = async ({
             </Breadcrumb>
 
             {/* Content */}
-            <CustomMDX source={content.content} />
+            <CustomMDX source={page.content} />
+            <div className="mt-auto">
+                <DocsFooter pages={pages} />
+            </div>
         </main>
     );
 };

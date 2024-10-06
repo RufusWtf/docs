@@ -77,11 +77,10 @@ export const generateMetadata = async ({
     params,
 }: {
     params: Promise<{ slug: string[] }>;
-}): Promise<Metadata> => {
+}): Promise<Metadata | undefined> => {
     const slug: string = (((await params).slug as string[]) || undefined)?.join(
         "/"
     ); // The slug of the content
-    let embed: Metadata | undefined; // The content embed, if any
     if (slug) {
         const content: DocsContentMetadata | undefined = getDocsContent().find(
             (metadata: DocsContentMetadata): boolean => metadata.slug === slug
@@ -93,16 +92,6 @@ export const generateMetadata = async ({
             });
         }
     }
-
-    // Return the page embed
-    return (
-        embed ||
-        Embed({
-            title: "Documentation",
-            description:
-                "Need help with Pulse App? You've come to the right place!",
-        })
-    );
 };
 
 export default DocsPage;

@@ -22,13 +22,14 @@ const DocsFooter = ({
         current < pages.length - 1 ? pages[current + 1] : undefined;
 
     return (
-        <footer className="mx-14 my-5 flex flex-col">
+        <footer className="mx-14 my-5 flex flex-col select-none">
             <Separator className="mb-4" />
             <div className="flex justify-between">
                 {previous && (
                     <Link
                         className="flex gap-2 items-center hover:opacity-75 transition-all transform-gpu group"
                         href={`/${previous.slug}` || "#"}
+                        draggable={false}
                     >
                         <ChevronLeftIcon className="w-4 h-4 group-hover:-translate-x-0.5 transition-all transform-gpu" />
                         {previous.title}
@@ -38,6 +39,7 @@ const DocsFooter = ({
                     <Link
                         className="ml-auto flex gap-2 items-center hover:opacity-75 transition-all transform-gpu group"
                         href={`/${next.slug}` || "#"}
+                        draggable={false}
                     >
                         {next.title}
                         <ChevronRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />

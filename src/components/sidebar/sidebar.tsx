@@ -22,7 +22,7 @@ const Sidebar = (): ReactElement => (
         </div>
 
         {/* Desktop */}
-        <div className="hidden fixed top-20 inset-y-0 min-w-32 w-40 sm:w-52 py-3 xs:flex flex-col justify-between transition-all transform-gpu">
+        <div className="hidden fixed top-[4.3rem] inset-y-0 min-w-32 w-40 sm:w-52 py-3 xs:flex flex-col justify-between transition-all transform-gpu">
             <SidebarContent />
         </div>
     </>

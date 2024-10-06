@@ -12,7 +12,7 @@ const Sidebar = (): ReactElement => (
         {/* Mobile */}
         <div className="xs:hidden">
             <Sheet>
-                <SheetTrigger>
+                <SheetTrigger className="flex items-center">
                     <Bars3BottomRightIcon className="w-6 h-6" />
                 </SheetTrigger>
                 <SheetContent className="h-full px-11 pt-10" side="top">

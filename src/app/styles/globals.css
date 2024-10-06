@@ -39,6 +39,8 @@ body {
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
+
+        --background-gradient: hsl(var(--background));
     }
 
     .dark {
@@ -66,6 +68,8 @@ body {
         --chart-3: 30 80% 55%;
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
+
+        --background-gradient: linear-gradient(to top, hsl(240, 6%, 10%), hsl(var(--background)));
     }
 }
 

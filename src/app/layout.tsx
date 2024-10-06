@@ -44,8 +44,7 @@ const RootLayout = ({
         <body
             className="scroll-smooth antialiased"
             style={{
-                background:
-                    "linear-gradient(to top, hsl(240, 6%, 10%), hsl(var(--background)))",
+                background: "var(--background-gradient)",
             }}
         >
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

@@ -22,7 +22,7 @@ const DocsFooter = ({
         current < pages.length - 1 ? pages[current + 1] : undefined;
 
     return (
-        <footer className="mx-14 my-5 flex flex-col select-none">
+        <footer className="xs:mx-5 sm:mx-10 my-5 flex flex-col select-none transition-all transform-gpu">
             <Separator className="mb-4" />
             <div className="flex justify-between">
                 {previous && (

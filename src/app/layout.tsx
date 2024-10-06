@@ -52,7 +52,7 @@ const RootLayout = ({
                 <div className="px-7 max-w-[90rem] mx-auto min-h-screen flex flex-col">
                     <Navbar />
                     <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
-                        <div className="hidden xs:flex">
+                        <div className="relative hidden xs:flex pr-40 sm:pr-52">
                             <Sidebar />
                         </div>
                         {children}

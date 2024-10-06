@@ -13,7 +13,6 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { Button } from "@/components/ui/button";
 
 /**
  * The dialog for quickly searching the docs.
@@ -48,31 +47,23 @@ const QuickSearchDialog = ({
                 className="cursor-pointer hover:opacity-85 transition-all transform-gpu select-none"
                 onClick={() => setOpen(true)}
             >
-                {/* Bigger Screens */}
-                <div className="hidden xs:flex">
-                    <div className="absolute top-2.5 left-3 z-10">
-                        <MagnifyingGlassIcon className="w-[1.15rem] h-[1.15rem]" />
-                    </div>
-
-                    <Input
-                        className="pl-10 rounded-lg cursor-pointer"
-                        type="search"
-                        name="search"
-                        placeholder="Search the docs..."
-                        readOnly
-                    />
-
-                    <div className="absolute top-1.5 right-3">
-                        <kbd className="h-5 px-1.5 inline-flex gap-1 items-center bg-muted font-medium text-muted-foreground rounded select-none pointer-events-none">
-                            <span>⌘</span>K
-                        </kbd>
-                    </div>
+                <div className="absolute top-2.5 left-3 z-10">
+                    <MagnifyingGlassIcon className="w-[1.15rem] h-[1.15rem]" />
                 </div>
 
-                {/* Smaller Screens */}
-                <Button className="p-2 flex xs:hidden" variant="outline">
-                    <MagnifyingGlassIcon className="w-5 h-5" />
-                </Button>
+                <Input
+                    className="pl-10 rounded-lg cursor-pointer"
+                    type="search"
+                    name="search"
+                    placeholder="Search the docs..."
+                    readOnly
+                />
+
+                <div className="absolute top-1.5 right-3">
+                    <kbd className="h-5 px-1.5 inline-flex gap-1 items-center bg-muted font-medium text-muted-foreground rounded select-none pointer-events-none">
+                        <span>⌘</span>K
+                    </kbd>
+                </div>
             </div>
 
             {/* Dialog */}

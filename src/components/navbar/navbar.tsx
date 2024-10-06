@@ -4,6 +4,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import { getDocsContent } from "@/lib/mdx";
+import Sidebar from "@/components/sidebar/sidebar";
 
 const Navbar = (): ReactElement => {
     const pages: DocsContentMetadata[] = getDocsContent();
@@ -32,7 +33,9 @@ const Navbar = (): ReactElement => {
             {/* Right */}
             <div className="flex gap-5 sm:gap-7 items-center transition-all transform-gpu">
                 {/* Search */}
-                <QuickSearchDialog pages={pages} />
+                <div className="hidden xs:flex">
+                    <QuickSearchDialog pages={pages} />
+                </div>
 
                 {/* Social */}
                 <div className="flex gap-5 items-center">
@@ -46,6 +49,11 @@ const Navbar = (): ReactElement => {
                         link="https://discord.pulseapp.cc"
                         icon="/media/discord.svg"
                     />
+                </div>
+
+                {/* Mobile Sidebar */}
+                <div className="flex xs:hidden">
+                    <Sidebar />
                 </div>
             </div>
         </nav>

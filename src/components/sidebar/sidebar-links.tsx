@@ -46,12 +46,12 @@ const CategoryItem = ({
 }) => {
     const path = usePathname();
     const active =
-        (path === "/" && node.slug === "home") || path === `/${node.slug}`;
+        (path === "/" && node.slug === "intro") || path === `/${node.slug}`;
     const [isOpen, setIsOpen] = useState(true);
     const hasChildren = Object.keys(node.children).length > 0;
 
     return (
-        <div className={`relative ${depth > 0 ? "ml-4" : ""} select-none`}>
+        <div className={`relative ${depth > 0 ? "ml-2.5" : ""} select-none`}>
             {/* Indentation */}
             {depth > 0 && (
                 <div
@@ -70,12 +70,12 @@ const CategoryItem = ({
                         draggable={false}
                     >
                         <Button
-                            variant="ghost"
                             className={cn(
-                                `relative ${depth > 0 ? "pl-4" : ""} w-full justify-between`,
+                                `relative px-1.5 ${depth > 0 ? "pl-4" : ""} w-full justify-between`,
                                 active &&
                                     "bg-primary/15 hover:bg-primary/20 text-primary/95 hover:text-primary"
                             )}
+                            variant="ghost"
                         >
                             {node.title}
                             {hasChildren && (

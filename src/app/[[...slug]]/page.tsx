@@ -10,6 +10,8 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { capitalizeWords } from "@/lib/string";
+import { Metadata } from "next";
+import Embed from "@/components/embed";
 
 /**
  * The page to render the documentation markdown content.
@@ -70,4 +72,37 @@ const DocsPage = async ({
         </main>
     );
 };
+
+export const generateMetadata = async ({
+    params,
+}: {
+    params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> => {
+    const slug: string = (((await params).slug as string[]) || undefined)?.join(
+        "/"
+    ); // The slug of the content
+    let embed: Metadata | undefined; // The content embed, if any
+    if (slug) {
+        const content: DocsContentMetadata | undefined = getDocsContent().find(
+            (metadata: DocsContentMetadata): boolean => metadata.slug === slug
+        ); // Get the content based on the provided slug
+        if (content) {
+            return Embed({
+                title: content.title,
+                description: content.summary,
+            });
+        }
+    }
+
+    // Return the page embed
+    return (
+        embed ||
+        Embed({
+            title: "Documentation",
+            description:
+                "Need help with Pulse App? You've come to the right place!",
+        })
+    );
+};
+
 export default DocsPage;

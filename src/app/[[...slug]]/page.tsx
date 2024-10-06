@@ -28,7 +28,7 @@ const DocsPage = async ({
     // Get the content to display based on the provided slug
     const content: DocsContentMetadata | undefined = getDocsContent().find(
         (metadata: DocsContentMetadata): boolean =>
-            metadata.slug === (slug || "home")
+            metadata.slug === (slug || "intro")
     );
     if (!content) {
         notFound();

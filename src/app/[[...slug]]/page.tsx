@@ -13,6 +13,7 @@ import { capitalizeWords } from "@/lib/string";
 import { Metadata } from "next";
 import Embed from "@/components/embed";
 import DocsFooter from "@/components/docs-footer";
+import { cn } from "@/lib/utils";
 
 /**
  * The page to render the documentation markdown content.
@@ -46,12 +47,16 @@ const DocsPage = async ({
                 <BreadcrumbList>
                     {splitSlug.map(
                         (part: string, index: number): ReactElement => {
+                            const active: boolean =
+                                index === splitSlug.length - 1;
                             const slug: string = splitSlug
                                 .slice(1, index + 1)
                                 .join("/");
                             return (
                                 <div className="flex items-center" key={part}>
-                                    <BreadcrumbItem>
+                                    <BreadcrumbItem
+                                        className={cn(active && "text-primary")}
+                                    >
                                         <BreadcrumbLink
                                             href={slug}
                                             draggable={false}

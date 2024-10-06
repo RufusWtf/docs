@@ -51,7 +51,7 @@ const RootLayout = ({
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
                 <div className="px-7 max-w-[90rem] mx-auto min-h-screen flex flex-col">
                     <Navbar />
-                    <div className="w-full h-full flex flex-grow gap-5">
+                    <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
                         <div className="hidden xs:flex">
                             <Sidebar />
                         </div>

@@ -65,7 +65,7 @@ const components = {
  * @param props the props for the MDX
  * @return the custom mdx
  */
-export const CustomMDX = (props): ReactElement => (
+export const CustomMDX = (props: any): ReactElement => (
     <MDXRemote
         {...props}
         components={{

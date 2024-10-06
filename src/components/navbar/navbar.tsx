@@ -23,6 +23,7 @@ const Navbar = (): ReactElement => {
                         alt="Pulse App Logo"
                         width={36}
                         height={36}
+                        draggable={false}
                     />
                 </Link>
 

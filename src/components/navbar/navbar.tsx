@@ -2,7 +2,6 @@ import { ReactElement } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import { getDocsContent } from "@/lib/mdx";
 
@@ -33,9 +32,7 @@ const Navbar = (): ReactElement => {
             {/* Right */}
             <div className="flex gap-5 sm:gap-7 items-center transition-all transform-gpu">
                 {/* Search */}
-                <div className="hidden xs:flex">
-                    <QuickSearchDialog pages={pages} />
-                </div>
+                <QuickSearchDialog pages={pages} />
 
                 {/* Social */}
                 <div className="flex gap-5 items-center">

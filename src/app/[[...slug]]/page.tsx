@@ -2,6 +2,14 @@ import { ReactElement } from "react";
 import { getDocsContent } from "@/lib/mdx";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { capitalizeWords } from "@/lib/string";
 
 /**
  * The page to render the documentation markdown content.
@@ -25,9 +33,39 @@ const DocsPage = async ({
     if (!content) {
         notFound();
     }
+    const splitSlug: string[] = content.slug?.split("/") || [];
 
     return (
-        <main>
+        <main className="flex flex-col">
+            {/* Breadcrumb */}
+            <Breadcrumb className="pt-4 select-none">
+                <BreadcrumbList>
+                    {splitSlug.map(
+                        (part: string, index: number): ReactElement => {
+                            const slug: string = splitSlug
+                                .slice(1, index + 1)
+                                .join("/");
+                            return (
+                                <div className="flex items-center" key={part}>
+                                    <BreadcrumbItem>
+                                        <BreadcrumbLink
+                                            href={slug}
+                                            draggable={false}
+                                        >
+                                            {capitalizeWords(part)}
+                                        </BreadcrumbLink>
+                                    </BreadcrumbItem>
+                                    {index < splitSlug.length - 1 && (
+                                        <BreadcrumbSeparator className="pl-1.5" />
+                                    )}
+                                </div>
+                            );
+                        }
+                    )}
+                </BreadcrumbList>
+            </Breadcrumb>
+
+            {/* Content */}
             <CustomMDX source={content.content} />
         </main>
     );

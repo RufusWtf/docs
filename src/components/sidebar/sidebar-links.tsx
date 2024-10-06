@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
@@ -52,7 +51,7 @@ const CategoryItem = ({
     const hasChildren = Object.keys(node.children).length > 0;
 
     return (
-        <div className={`relative ${depth > 0 ? "ml-4" : ""}`}>
+        <div className={`relative ${depth > 0 ? "ml-4" : ""} select-none`}>
             {/* Indentation */}
             {depth > 0 && (
                 <div

@@ -24,7 +24,7 @@ const ThemeSwitcher = (): ReactElement => {
 
     return mounted ? (
         <Button
-            className="p-1.5 flex gap-7 items-center hover:opacity-85"
+            className="p-1.5 flex gap-7 justify-start items-center hover:opacity-85 select-none"
             variant="ghost"
             onClick={() => setTheme(isLight ? "dark" : "light")}
         >
@@ -38,7 +38,7 @@ const ThemeSwitcher = (): ReactElement => {
                     }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Sun className="w-[1.2rem] h-[1.2rem]" />
+                    <Sun className="w-[1.1rem] h-[1.1rem]" />
                 </motion.div>
                 <motion.div
                     className="absolute"
@@ -49,10 +49,10 @@ const ThemeSwitcher = (): ReactElement => {
                     }}
                     transition={{ duration: 0.5 }}
                 >
-                    <MoonStar className="w-[1.2rem] h-[1.2rem]" />
+                    <MoonStar className="w-[1.1rem] h-[1.1rem]" />
                 </motion.div>
             </div>
-            <span className="font-semibold">{capitalizeWords(theme)}</span>
+            <span>{capitalizeWords(theme)}</span>
         </Button>
     ) : (
         <></>

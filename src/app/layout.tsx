@@ -10,8 +10,8 @@ import Sidebar from "@/components/sidebar/sidebar";
  */
 export const metadata: Metadata = {
     title: {
-        default: "Pulse App Docs",
-        template: "%s • Pulse App Docs",
+        default: "Pulse Docs",
+        template: "%s • Pulse Docs",
     },
     description:
         "A lightweight service monitoring solution for tracking the availability of whatever service your heart desires!",

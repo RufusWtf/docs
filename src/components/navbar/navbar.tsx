@@ -8,7 +8,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 const Navbar = (): ReactElement => {
     const pages: DocsContentMetadata[] = getDocsContent();
     return (
-        <nav className="fixed left-0 inset-x-0 bg-white/[0.007] backdrop-saturate-100 backdrop-blur-xl border-b">
+        <nav className="fixed left-0 inset-x-0 bg-white/[0.007] backdrop-saturate-100 backdrop-blur-xl border-b z-50">
             <div className="px-7 max-w-[90rem] mx-auto py-4 flex justify-between items-center">
                 {/* Branding */}
                 <Link

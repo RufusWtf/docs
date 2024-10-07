@@ -4,6 +4,7 @@ import { ReactElement, ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar/navbar";
 import Sidebar from "@/components/sidebar/sidebar";
+import Footer from "@/components/footer";
 
 /**
  * The metadata for this app.
@@ -51,12 +52,13 @@ const RootLayout = ({
                 <div className="px-7 max-w-[90rem] mx-auto min-h-screen flex flex-col">
                     <Navbar />
                     <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
-                        <div className="relative hidden xs:flex pr-40 sm:pr-52">
+                        <div className="relative hidden xs:flex">
                             <Sidebar />
                         </div>
                         {children}
                     </div>
                 </div>
+                <Footer />
             </ThemeProvider>
         </body>
     </html>

@@ -23,7 +23,7 @@ const DocsFooter = ({
 
     return (
         <footer className="xs:mx-5 sm:mx-10 my-2 flex flex-col select-none transition-all transform-gpu">
-            <Separator className="mb-4" />
+            <Separator className="my-4" />
             <div className="flex justify-between">
                 {/* Previous */}
                 {previous && (

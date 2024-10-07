@@ -14,6 +14,7 @@ import { Metadata } from "next";
 import Embed from "@/components/embed";
 import DocsFooter from "@/components/docs-footer";
 import { cn } from "@/lib/utils";
+import OnThisPage from "@/components/on-this-page";
 
 /**
  * The page to render the documentation markdown content.
@@ -75,7 +76,14 @@ const DocsPage = async ({
             </Breadcrumb>
 
             {/* Content */}
-            <CustomMDX source={page.content} />
+            <div className="flex justify-between">
+                <div className="flex flex-col">
+                    <CustomMDX source={page.content} />
+                </div>
+                <div className="hidden xl:flex">
+                    <OnThisPage page={page} />
+                </div>
+            </div>
             <div className="mt-auto">
                 <DocsFooter pages={pages} />
             </div>

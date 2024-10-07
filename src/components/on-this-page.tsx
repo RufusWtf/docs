@@ -4,6 +4,7 @@ import { ReactElement, useEffect, useRef, useState } from "react";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { truncateText } from "@/lib/string";
 
 type Header = {
     id: string;
@@ -78,20 +79,35 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
             </div>
 
             {/* Headers */}
-            <ul>
+            <ul className="relative">
                 {headers.map((header: Header) => (
                     <li
                         key={header.id}
                         className={cn(
-                            "hover:opacity-80 transition-all transform-gpu",
+                            "hover:opacity-80 transition-all transform-gpu relative",
                             activeHeader === header.id
                                 ? "font-semibold text-primary"
                                 : "opacity-65"
                         )}
-                        style={{ marginLeft: `${(header.level - 1) * 16}px` }}
+                        style={{ paddingLeft: `${(header.level - 1) * 16}px` }}
                     >
-                        <Link href={`#${header.id}`} draggable={false}>
-                            {header.text}
+                        {/* Indentation */}
+                        {header.level > 1 && (
+                            <div
+                                className="absolute left-0 top-0 bottom-0 border-l border-muted"
+                                style={{
+                                    left: `${(header.level - 2) * 16 + 4}px`,
+                                }}
+                            />
+                        )}
+
+                        {/* Header */}
+                        <Link
+                            href={`#${header.id}`}
+                            draggable={false}
+                            className="block py-1"
+                        >
+                            {truncateText(header.text, 26)}
                         </Link>
                     </li>
                 ))}

@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import { getDocsContent } from "@/lib/mdx";
 import Sidebar from "@/components/sidebar/sidebar";

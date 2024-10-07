@@ -9,7 +9,7 @@ const Navbar = (): ReactElement => {
     const pages: DocsContentMetadata[] = getDocsContent();
     return (
         <nav className="fixed left-0 inset-x-0 bg-white/[0.007] backdrop-saturate-100 backdrop-blur-xl border-b z-50">
-            <div className="px-3 sm:px-7 max-w-[90rem] mx-auto py-4 flex justify-between items-center transition-all transform-gpu">
+            <div className="px-3 sm:px-7 max-w-screen-2xl mx-auto py-4 flex justify-between items-center transition-all transform-gpu">
                 {/* Branding */}
                 <Link
                     className="flex gap-1 items-end hover:opacity-75 transition-all transform-gpu select-none"

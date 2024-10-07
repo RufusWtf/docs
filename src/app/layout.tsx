@@ -52,7 +52,7 @@ const RootLayout = ({
                             background: "var(--background-gradient)",
                         }}
                     >
-                        <div className="px-3 sm:px-7 max-w-[90rem] mx-auto flex flex-col transition-all">
+                        <div className="px-3 sm:px-7 max-w-screen-2xl mx-auto flex flex-col transition-all">
                             <Navbar />
                             <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
                                 <div className="relative hidden xs:flex">

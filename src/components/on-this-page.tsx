@@ -1,11 +1,16 @@
 "use client";
 
 import { ReactElement, useEffect, useRef, useState } from "react";
-import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
+import {
+    ArrowLongRightIcon,
+    Bars3CenterLeftIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { truncateText } from "@/lib/string";
 import { motion, useInView } from "framer-motion";
+import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 type Header = {
     id: string;
@@ -122,7 +127,35 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                     </li>
                 ))}
             </ul>
+
+            {/* Footer */}
+            <div>
+                <Separator className="mt-1 mb-3.5" />
+                <Footer page={page} />
+            </div>
         </motion.div>
     );
 };
+
+const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => (
+    <footer className="flex flex-col text-xs opacity-75">
+        {/* Edit on Git */}
+        <Link
+            className="flex gap-1.5 items-center hover:opacity-75 transition-all transform-gpu group"
+            href={`https://git.rainnny.club/PulseApp/docs/src/branch/master/docs/${page.slug}.md`}
+            target="_blank"
+            draggable={false}
+        >
+            <Image
+                src="/media/github.svg"
+                alt="GitHub Logo"
+                width={13}
+                height={13}
+            />
+            <span>Edit this page on GitHub</span>
+            <ArrowLongRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+        </Link>
+    </footer>
+);
+
 export default OnThisPage;

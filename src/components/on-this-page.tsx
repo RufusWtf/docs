@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { truncateText } from "@/lib/string";
 import { motion, useInView } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 type Header = {
     id: string;
@@ -137,25 +137,50 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     );
 };
 
-const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => (
-    <footer className="flex flex-col text-xs opacity-75">
-        {/* Edit on Git */}
-        <Link
-            className="flex gap-1.5 items-center hover:opacity-75 transition-all transform-gpu group"
-            href={`https://git.rainnny.club/PulseApp/docs/src/branch/master/docs/${page.slug}.md`}
-            target="_blank"
-            draggable={false}
-        >
-            <Image
-                src="/media/github.svg"
-                alt="GitHub Logo"
-                width={13}
-                height={13}
-            />
-            <span>Edit this page on GitHub</span>
-            <ArrowLongRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
-        </Link>
-    </footer>
-);
+const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => {
+    const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleScroll = () => setHasScrolled(window.scrollY > 400);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    return (
+        <footer className="flex flex-col opacity-75">
+            {/* Edit on Git */}
+            <Link
+                className="flex gap-1.5 items-center text-xs hover:opacity-75 transition-all transform-gpu group"
+                href={`https://git.rainnny.club/PulseApp/docs/src/branch/master/docs/${page.slug}.md`}
+                target="_blank"
+                draggable={false}
+            >
+                <span>Edit this page on GitHub</span>
+                <ArrowLongRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+            </Link>
+
+            {/* Scroll to Top */}
+            <div
+                className={cn(
+                    "transition-opacity transform-gpu",
+                    hasScrolled
+                        ? "opacity-100"
+                        : "opacity-0 pointer-events-none"
+                )}
+            >
+                <Button
+                    className="p-0 justify-start flex gap-1.5 items-center text-xs hover:bg-transparent hover:opacity-75 transition-all transform-gpu group"
+                    variant="ghost"
+                    onClick={() =>
+                        window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                >
+                    <span>Scroll to Top</span>
+                    <ArrowLongRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+                </Button>
+            </div>
+        </footer>
+    );
+};
 
 export default OnThisPage;

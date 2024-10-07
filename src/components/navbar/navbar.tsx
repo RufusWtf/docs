@@ -13,7 +13,7 @@ const Navbar = (): ReactElement => {
                 {/* Branding */}
                 <Link
                     className="flex gap-1 items-end hover:opacity-75 transition-all transform-gpu select-none"
-                    href="/public"
+                    href="/"
                     draggable={false}
                 >
                     <h1 className="text-lg font-semibold">docs.</h1>

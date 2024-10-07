@@ -1,6 +1,6 @@
 ---
 title: 'Hey'
-published: '10-06-2024'
+published: '2024-10-06'
 summary: 'petentium usu tota noluisse errem elaboraret auctor.'
 ---
 

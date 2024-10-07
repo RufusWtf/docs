@@ -1,10 +1,12 @@
 "use client";
 
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Separator } from "@/components/ui/separator";
+import { DateTime } from "luxon";
+import SimpleTooltip from "@/components/simple-tooltip";
 
 const DocsFooter = ({
     pages,
@@ -21,8 +23,35 @@ const DocsFooter = ({
     const next: DocsContentMetadata | undefined =
         current < pages.length - 1 ? pages[current + 1] : undefined;
 
+    const [publicationDate, setPublicationDate] = useState<string | null>(
+        DateTime.fromISO(pages[current]?.published).toRelative()
+    );
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPublicationDate(
+                DateTime.fromISO(pages[current]?.published).toRelative()
+            );
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [current, pages]);
+
     return (
         <footer className="xs:mx-5 sm:mx-10 my-2 flex flex-col select-none transition-all transform-gpu">
+            {/* Publish Date */}
+            <div className="ml-auto pt-4">
+                <SimpleTooltip
+                    content={DateTime.fromISO(
+                        pages[current]?.published
+                    ).toLocaleString(DateTime.DATETIME_MED)}
+                >
+                    <span className="text-sm opacity-75">
+                        Published {publicationDate}
+                    </span>
+                </SimpleTooltip>
+            </div>
+
+            {/* Pages */}
             <Separator className="my-4" />
             <div className="flex justify-between">
                 {/* Previous */}

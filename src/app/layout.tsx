@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar/navbar";
 import Sidebar from "@/components/sidebar/sidebar";
 import Footer from "@/components/footer";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 /**
  * The metadata for this app.
@@ -49,16 +50,18 @@ const RootLayout = ({
             }}
         >
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-                <div className="px-7 max-w-[90rem] mx-auto min-h-screen flex flex-col">
-                    <Navbar />
-                    <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
-                        <div className="relative hidden xs:flex">
-                            <Sidebar />
+                <TooltipProvider delayDuration={100}>
+                    <div className="px-7 max-w-[90rem] mx-auto min-h-screen flex flex-col">
+                        <Navbar />
+                        <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
+                            <div className="relative hidden xs:flex">
+                                <Sidebar />
+                            </div>
+                            {children}
                         </div>
-                        {children}
                     </div>
-                </div>
-                <Footer />
+                    <Footer />
+                </TooltipProvider>
             </ThemeProvider>
         </body>
     </html>

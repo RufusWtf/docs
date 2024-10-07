@@ -101,11 +101,10 @@ const CategoryItem = ({
                                 animate="open"
                                 exit="collapsed"
                                 variants={{
-                                    open: { opacity: 1, height: "auto", y: 0 },
+                                    open: { opacity: 1, height: "auto" },
                                     collapsed: {
                                         opacity: 0,
                                         height: 0,
-                                        y: -20,
                                     },
                                 }}
                                 transition={{

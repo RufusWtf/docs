@@ -16,7 +16,8 @@ const DocsFooter = ({
     const path: string = usePathname();
 
     const current: number = pages.findIndex(
-        (page: DocsContentMetadata) => `/${page.slug}` === path
+        (page: DocsContentMetadata) =>
+            (path === "/" && page.slug === "intro") || path === `/${page.slug}`
     );
     const previous: DocsContentMetadata | undefined =
         current > 0 ? pages[current - 1] : undefined;

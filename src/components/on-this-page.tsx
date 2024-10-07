@@ -5,6 +5,8 @@ import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { truncateText } from "@/lib/string";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 type Header = {
     id: string;
@@ -17,7 +19,12 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     const [activeHeader, setActiveHeader] = useState<string | undefined>(
         undefined
     );
-    const observerRef = useRef<IntersectionObserver | undefined>(undefined);
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref);
+
+    const observedHeaderRef = useRef<IntersectionObserver | undefined>(
+        undefined
+    );
 
     useEffect(() => {
         // Regular expression to match markdown headers
@@ -41,8 +48,8 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
 
     useEffect(() => {
         // Cleanup existing observer
-        if (observerRef.current) {
-            observerRef.current.disconnect();
+        if (observedHeaderRef.current) {
+            observedHeaderRef.current.disconnect();
         }
 
         const observer = new IntersectionObserver(
@@ -55,7 +62,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
             },
             { rootMargin: "0px 0px -80% 0px", threshold: 0.1 }
         );
-        observerRef.current = observer;
+        observedHeaderRef.current = observer;
 
         // Observe all header elements
         headers.forEach((header: Header) => {
@@ -71,7 +78,13 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     }, [headers]);
 
     return (
-        <div className="w-44 flex flex-col gap-2 text-sm select-none">
+        <motion.div
+            ref={ref}
+            className="w-44 flex flex-col gap-2 text-sm select-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: inView ? 1 : 0 }}
+            transition={{ duration: 0.2 }}
+        >
             {/* Title */}
             <div className="flex gap-2.5 items-center">
                 <Bars3CenterLeftIcon className="w-5 h-5" />
@@ -112,7 +125,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </motion.div>
     );
 };
 export default OnThisPage;

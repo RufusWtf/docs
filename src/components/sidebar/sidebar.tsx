@@ -41,7 +41,7 @@ const SidebarContent = (): ReactElement => {
             </div>
 
             {/* Theme Switcher */}
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
                 <Separator className="mb-3 bg-separator-gradient" />
                 <ThemeSwitcher />
             </div>

@@ -48,7 +48,7 @@ const links = {
 };
 
 const Footer = (): ReactElement => (
-    <footer className="mt-3 relative h-[19.5rem] md:h-[17rem] flex justify-center border-t border-zinc-700/75 overflow-hidden">
+    <footer className="mt-3 relative h-[19.5rem] md:h-[17rem] flex justify-center border-t border-zinc-700/75 overflow-hidden select-none">
         <div className="w-full md:max-w-[65rem]">
             <div className="px-5 py-5 md:py-10 w-full flex flex-col md:flex-row items-center justify-around md:items-start gap-7">
                 {/* Top */}
@@ -111,12 +111,14 @@ const Branding = () => (
     <Link
         className="flex gap-3 items-center hover:opacity-75 transition-all transform-gpu"
         href="https://pulseapp.cc"
+        draggable={false}
     >
         <Image
             src="/media/logo.png"
             alt="Pulse App Logo"
             width={40}
             height={40}
+            draggable={false}
         />
         <h1 className="text-xl font-bold">Pulse App</h1>
     </Link>

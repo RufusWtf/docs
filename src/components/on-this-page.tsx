@@ -83,7 +83,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     return (
         <motion.div
             ref={ref}
-            className="sticky top-[5.5rem] w-44 max-h-[calc(100vh-3.5rem)] flex flex-col gap-2 text-sm select-none"
+            className="sticky top-[7rem] w-44 max-h-[calc(100vh-3.5rem)] flex flex-col gap-2 text-sm select-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: inView ? 1 : 0 }}
             transition={{ duration: 0.2 }}

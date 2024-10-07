@@ -43,24 +43,26 @@ const RootLayout = ({
     children: ReactNode;
 }>): ReactElement => (
     <html lang="en">
-        <body
-            className="scroll-smooth antialiased"
-            style={{
-                background: "var(--background-gradient)",
-            }}
-        >
+        <body className="scroll-smooth antialiased">
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
                 <TooltipProvider delayDuration={100}>
-                    <div className="px-7 max-w-[90rem] mx-auto min-h-screen flex flex-col">
-                        <Navbar />
-                        <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
-                            <div className="relative hidden xs:flex">
-                                <Sidebar />
+                    <div
+                        className="min-h-screen flex flex-col"
+                        style={{
+                            background: "var(--background-gradient)",
+                        }}
+                    >
+                        <div className="px-3 sm:px-7 max-w-[90rem] mx-auto flex flex-col transition-all">
+                            <Navbar />
+                            <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
+                                <div className="relative hidden xs:flex">
+                                    <Sidebar />
+                                </div>
+                                {children}
                             </div>
-                            {children}
                         </div>
+                        <Footer />
                     </div>
-                    <Footer />
                 </TooltipProvider>
             </ThemeProvider>
         </body>

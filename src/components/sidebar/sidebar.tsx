@@ -15,7 +15,7 @@ const Sidebar = (): ReactElement => (
                 <SheetTrigger className="flex items-center">
                     <Bars3BottomRightIcon className="w-6 h-6" />
                 </SheetTrigger>
-                <SheetContent className="h-full px-11 pt-10" side="top">
+                <SheetContent className="h-full px-5 pt-11" side="right">
                     <SidebarContent />
                 </SheetContent>
             </Sheet>

@@ -5,7 +5,7 @@ import SidebarLinks from "@/components/sidebar/sidebar-links";
 import ThemeSwitcher from "@/components/theme-switcher";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
-import { Bars3BottomRightIcon } from "@heroicons/react/24/outline";
+import { AlignRightIcon } from "lucide-react";
 
 const Sidebar = (): ReactElement => (
     <>
@@ -13,7 +13,7 @@ const Sidebar = (): ReactElement => (
         <div className="xs:hidden">
             <Sheet>
                 <SheetTrigger className="flex items-center">
-                    <Bars3BottomRightIcon className="w-6 h-6" />
+                    <AlignRightIcon className="w-6 h-6" />
                 </SheetTrigger>
                 <SheetContent className="h-full px-5 pt-11" side="right">
                     <SidebarContent />

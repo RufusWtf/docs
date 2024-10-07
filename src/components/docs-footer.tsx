@@ -3,10 +3,10 @@
 import { ReactElement, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Separator } from "@/components/ui/separator";
 import { DateTime } from "luxon";
 import SimpleTooltip from "@/components/simple-tooltip";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const DocsFooter = ({
     pages,
@@ -62,7 +62,7 @@ const DocsFooter = ({
                         href={`/${previous.slug}` || "#"}
                         draggable={false}
                     >
-                        <ChevronLeftIcon className="pb-1 w-4 h-4 group-hover:-translate-x-0.5 transition-all transform-gpu" />
+                        <ChevronLeft className="pb-1 w-4 h-4 group-hover:-translate-x-0.5 transition-all transform-gpu" />
                         <div className="flex flex-col">
                             <h1 className="text-sm opacity-75">Previous</h1>
                             <p>{previous.title}</p>
@@ -81,7 +81,7 @@ const DocsFooter = ({
                             <h1 className="text-sm opacity-75">Next</h1>
                             <p>{next.title}</p>
                         </div>
-                        <ChevronRightIcon className="pb-1 w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+                        <ChevronRight className="pb-1 w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
                     </Link>
                 )}
             </div>

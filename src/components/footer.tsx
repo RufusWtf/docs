@@ -4,11 +4,8 @@ import { ReactElement, ReactNode } from "react";
 import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
 import Link from "next/link";
 import Image from "next/image";
-import {
-    ArrowTopRightOnSquareIcon,
-    EnvelopeIcon,
-} from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
+import { ExternalLink, Mail } from "lucide-react";
 
 const links = {
     Resources: [
@@ -69,9 +66,7 @@ const Footer = (): ReactElement => (
                         />
                         <SocialLink
                             name="Email"
-                            logo={
-                                <EnvelopeIcon className="opacity-95 w-6 h-6" />
-                            }
+                            logo={<Mail className="opacity-95 w-6 h-6" />}
                             href="mailto:support@pulseapp.cc"
                         />
                     </div>
@@ -187,7 +182,7 @@ const FooterLink = ({
                 {name}
             </span>
             {shortName && <span className="flex sm:hidden">{shortName}</span>}
-            {external && <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />}
+            {external && <ExternalLink className="w-3.5 h-3.5" />}
         </Link>
     );
 };

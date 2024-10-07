@@ -11,7 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ChevronRight } from "lucide-react";
 
 const SidebarLinks = ({
     pages,
@@ -86,7 +86,7 @@ const CategoryItem = ({
                                     animate={{ rotate: isOpen ? 90 : 180 }}
                                     transition={{ duration: 0.2 }}
                                 >
-                                    <ChevronRightIcon className="w-4 h-4" />
+                                    <ChevronRight className="w-4 h-4" />
                                 </motion.div>
                             )}
                         </Button>

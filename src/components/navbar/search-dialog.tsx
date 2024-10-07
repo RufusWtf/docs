@@ -9,10 +9,10 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { Search } from "lucide-react";
 
 /**
  * The dialog for quickly searching the docs.
@@ -53,7 +53,7 @@ const QuickSearchDialog = ({
                 onClick={() => setOpen(true)}
             >
                 <div className="absolute top-2.5 left-3 z-10">
-                    <MagnifyingGlassIcon className="w-[1.15rem] h-[1.15rem]" />
+                    <Search className="w-[1.15rem] h-[1.15rem]" />
                 </div>
 
                 <Input

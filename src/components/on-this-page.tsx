@@ -1,17 +1,13 @@
 "use client";
 
 import { ReactElement, useEffect, useRef, useState } from "react";
-import {
-    ArrowLongRightIcon,
-    ArrowLongUpIcon,
-    Bars3CenterLeftIcon,
-} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { truncateText } from "@/lib/string";
 import { motion, useInView } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { AlignLeftIcon, ArrowUpFromDot, MoveRight } from "lucide-react";
 
 type Header = {
     id: string;
@@ -90,7 +86,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
         >
             {/* Title */}
             <div className="flex gap-2.5 items-center">
-                <Bars3CenterLeftIcon className="w-5 h-5" />
+                <AlignLeftIcon className="w-5 h-5" />
                 <h1>On This Page</h1>
             </div>
 
@@ -157,7 +153,7 @@ const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                 draggable={false}
             >
                 <span>Edit this page on GitHub</span>
-                <ArrowLongRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+                <MoveRight className="w-4 h-4 group-hover:translate-x-px transition-all transform-gpu" />
             </Link>
 
             {/* Scroll to Top */}
@@ -177,7 +173,7 @@ const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                     }
                 >
                     <span>Scroll to Top</span>
-                    <ArrowLongUpIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+                    <ArrowUpFromDot className="w-4 h-4 group-hover:-translate-y-px transition-all transform-gpu" />
                 </Button>
             </div>
         </footer>

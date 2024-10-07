@@ -1,6 +1,193 @@
-import { ReactElement } from "react";
+"use client";
+
+import { ReactElement, ReactNode } from "react";
+import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
+import Link from "next/link";
+import Image from "next/image";
+import {
+    ArrowTopRightOnSquareIcon,
+    EnvelopeIcon,
+} from "@heroicons/react/24/outline";
+import { cn } from "@/lib/utils";
+
+const links = {
+    Resources: [
+        {
+            name: "Support",
+            href: "https://support.pulseapp.cc",
+        },
+        {
+            name: "Jobs",
+            href: "https://jobs.pulseapp.cc",
+        },
+        {
+            name: "Developers",
+            shortName: "Devs",
+            href: "https://dev.pulseapp.cc",
+            external: true,
+        },
+        {
+            name: "System Status",
+            shortName: "Status",
+            href: "https://status.pulseapp.cc",
+            external: true,
+        },
+    ],
+    Legal: [
+        {
+            name: "Terms & Conditions",
+            shortName: "Terms",
+            href: "/legal/terms",
+        },
+        {
+            name: "Privacy Policy",
+            shortName: "Privacy",
+            href: "/legal/privacy",
+        },
+    ],
+};
 
 const Footer = (): ReactElement => (
-    <footer className="h-44 flex justify-center items-center">FOOTER</footer>
+    <footer className="mt-3 relative h-[19.5rem] md:h-[17rem] flex justify-center border-t border-zinc-700/75 overflow-hidden">
+        <div className="w-full md:max-w-[65rem]">
+            <div className="px-5 py-5 md:py-10 w-full flex flex-col md:flex-row items-center justify-around md:items-start gap-7">
+                {/* Top */}
+                <div className="flex flex-col gap-2.5 items-center md:items-start">
+                    <Branding />
+
+                    {/* Socials */}
+                    <div className="pl-1 flex gap-2.5 items-center z-50">
+                        <SocialLink
+                            name="GitHub"
+                            logo="github.svg"
+                            href="https://github.com/PulseAppCC"
+                        />
+                        <SocialLink
+                            name="Discord"
+                            logo="discord.svg"
+                            href="https://discord.pulseapp.cc"
+                        />
+                        <SocialLink
+                            name="Email"
+                            logo={
+                                <EnvelopeIcon className="opacity-95 w-6 h-6" />
+                            }
+                            href="mailto:support@pulseapp.cc"
+                        />
+                    </div>
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-7 md:gap-12 transition-all transform-gpu">
+                    {Object.entries(links).map(([title, links]) => (
+                        <LinkCategory key={title} title={title}>
+                            {links.map((link) => (
+                                <FooterLink key={link.name} {...link} />
+                            ))}
+                        </LinkCategory>
+                    ))}
+                </div>
+            </div>
+
+            {/* Copyright */}
+            <p className="absolute inset-x-0 bottom-3.5 flex text-sm text-center justify-center opacity-60">
+                Copyright &copy; {new Date().getFullYear()} Pulse App. All
+                rights reserved.
+            </p>
+        </div>
+
+        {/* Background */}
+        <AnimatedGridPattern
+            className="inset-x-0 skew-y-12 [mask-image:radial-gradient(500px_circle_at_center,white,transparent)]"
+            numSquares={30}
+            maxOpacity={0.1}
+            duration={3}
+            repeatDelay={1}
+        />
+    </footer>
 );
+
+const Branding = () => (
+    <Link
+        className="flex gap-3 items-center hover:opacity-75 transition-all transform-gpu"
+        href="https://pulseapp.cc"
+    >
+        <Image
+            src="/media/logo.png"
+            alt="Pulse App Logo"
+            width={40}
+            height={40}
+        />
+        <h1 className="text-xl font-bold">Pulse App</h1>
+    </Link>
+);
+
+const SocialLink = ({
+    name,
+    logo,
+    href,
+}: {
+    name: string;
+    logo: string | ReactElement;
+    href: string;
+}) => (
+    <Link
+        className="hover:opacity-75 transition-all transform-gpu"
+        href={href}
+        target="_blank"
+        draggable={false}
+    >
+        {typeof logo === "string" ? (
+            <Image
+                src={`/media/${logo}`}
+                alt={`${name}'s Logo`}
+                width={20}
+                height={20}
+                draggable={false}
+            />
+        ) : (
+            logo
+        )}
+    </Link>
+);
+
+const LinkCategory = ({
+    title,
+    children,
+}: {
+    title: string;
+    children: ReactNode;
+}): ReactElement => (
+    <div className="flex flex-col gap-0.5">
+        <h1 className="text-lg font-semibold">{title}</h1>
+        {children}
+    </div>
+);
+
+const FooterLink = ({
+    name,
+    shortName,
+    href,
+}: {
+    name: string;
+    shortName?: string | undefined;
+    href: string;
+}): ReactElement => {
+    const external: boolean = !href.startsWith("/");
+    return (
+        <Link
+            className="flex gap-2 items-center hover:opacity-75 transition-all transform-gpu"
+            href={href}
+            target={external ? "_blank" : undefined}
+            draggable={false}
+        >
+            <span className={cn("hidden sm:flex", !shortName && "flex")}>
+                {name}
+            </span>
+            {shortName && <span className="flex sm:hidden">{shortName}</span>}
+            {external && <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />}
+        </Link>
+    );
+};
+
 export default Footer;

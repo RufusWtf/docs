@@ -44,7 +44,7 @@ const DocsPage = async ({
     return (
         <main className="w-full flex flex-col">
             {/* Breadcrumb */}
-            <Breadcrumb className="pt-4 select-none">
+            <Breadcrumb className="pt-4 pb-3 select-none">
                 <BreadcrumbList>
                     {splitSlug.map(
                         (part: string, index: number): ReactElement => {

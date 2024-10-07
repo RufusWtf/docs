@@ -127,7 +127,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
 
             {/* Footer */}
             <div>
-                <Separator className="mt-1 mb-3.5" />
+                <Separator className="mt-1 mb-3.5 bg-separator-gradient" />
                 <Footer page={page} />
             </div>
         </motion.div>

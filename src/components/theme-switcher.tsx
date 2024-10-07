@@ -6,6 +6,8 @@ import { UseThemeProps } from "next-themes/dist/types";
 import { Monitor, MoonStar, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import SimpleTooltip from "@/components/simple-tooltip";
+import { capitalizeWords } from "@/lib/string";
 
 const themes = {
     dark: <MoonStar className="w-4 h-4" />,
@@ -31,18 +33,22 @@ const ThemeSwitcher = (): ReactElement => {
             {Object.entries(themes).map(([theme, icon]) => {
                 const active: boolean = mounted && theme === activeTheme;
                 return (
-                    <Button
+                    <SimpleTooltip
                         key={theme}
-                        className={cn(
-                            "p-1 h-6 opacity-80 rounded-full",
-                            active &&
-                                "ring-1 bg-zinc-900 ring-white/15 opacity-100"
-                        )}
-                        variant="ghost"
-                        onClick={() => setTheme(theme)}
+                        content={`${capitalizeWords(theme)} Theme`}
                     >
-                        {icon}
-                    </Button>
+                        <Button
+                            className={cn(
+                                "p-1 h-6 opacity-80 rounded-full",
+                                active &&
+                                    "ring-1 bg-zinc-900 ring-white/15 opacity-100"
+                            )}
+                            variant="ghost"
+                            onClick={() => setTheme(theme)}
+                        >
+                            {icon}
+                        </Button>
+                    </SimpleTooltip>
                 );
             })}
         </div>

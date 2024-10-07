@@ -3,6 +3,7 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
 import {
     ArrowLongRightIcon,
+    ArrowLongUpIcon,
     Bars3CenterLeftIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -176,7 +177,7 @@ const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                     }
                 >
                     <span>Scroll to Top</span>
-                    <ArrowLongRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
+                    <ArrowLongUpIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-all transform-gpu" />
                 </Button>
             </div>
         </footer>

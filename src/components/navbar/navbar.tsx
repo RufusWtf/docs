@@ -30,7 +30,7 @@ const Navbar = (): ReactElement => {
                 <div className="flex gap-5 sm:gap-7 items-center transition-all transform-gpu">
                     {/* Search */}
                     <div className="hidden xs:flex">
-                        <QuickSearchDialog pages={pages} />
+                        <QuickSearchDialog pages={pages} bindKeybind />
                     </div>
 
                     {/* Social */}

@@ -21,14 +21,19 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
  */
 const QuickSearchDialog = ({
     pages,
+    bindKeybind = false,
 }: {
     pages: DocsContentMetadata[];
+    bindKeybind?: boolean;
 }): ReactElement => {
     const [open, setOpen] = useState<boolean>(false);
     const router: AppRouterInstance = useRouter();
 
     // Listen for CTRL + K keybinds to open this dialog
     useEffect(() => {
+        if (!bindKeybind) {
+            return;
+        }
         const handleKeyDown = (event: KeyboardEvent): void => {
             if ((event.ctrlKey || event.metaKey) && event.key === "k") {
                 event.preventDefault();

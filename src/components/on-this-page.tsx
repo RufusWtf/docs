@@ -148,7 +148,7 @@ const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => {
             {/* Edit on Git */}
             <Link
                 className="flex gap-1.5 items-center text-xs hover:opacity-75 transition-all transform-gpu group"
-                href={`https://git.rainnny.club/PulseApp/docs/src/branch/master/docs/${page.slug}.md`}
+                href={`https://git.rainnny.club/PulseApp/docs/src/branch/master/docs/${page.slug}${page.extension}`}
                 target="_blank"
                 draggable={false}
             >

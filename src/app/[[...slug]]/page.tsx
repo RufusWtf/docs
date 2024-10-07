@@ -76,7 +76,7 @@ const DocsPage = async ({
             </Breadcrumb>
 
             {/* Content */}
-            <div className="flex justify-between">
+            <div className="flex gap-2.5 justify-between">
                 <div className="flex flex-col">
                     <CustomMDX source={page.content} />
                 </div>

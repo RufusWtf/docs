@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type Header = {
     id: string;
@@ -12,6 +13,10 @@ type Header = {
 
 const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     const [headers, setHeaders] = useState<Header[]>([]);
+    const [activeHeader, setActiveHeader] = useState<string | undefined>(
+        undefined
+    );
+    const observerRef = useRef<IntersectionObserver | undefined>(undefined);
 
     useEffect(() => {
         // Regular expression to match markdown headers
@@ -33,10 +38,41 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
         setHeaders(extractedHeaders);
     }, [page.content]);
 
+    useEffect(() => {
+        // Cleanup existing observer
+        if (observerRef.current) {
+            observerRef.current.disconnect();
+        }
+
+        const observer = new IntersectionObserver(
+            (entries: IntersectionObserverEntry[]) => {
+                entries.forEach((entry: IntersectionObserverEntry) => {
+                    if (entry.isIntersecting) {
+                        setActiveHeader(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: "0px 0px -80% 0px", threshold: 0.1 }
+        );
+        observerRef.current = observer;
+
+        // Observe all header elements
+        headers.forEach((header: Header) => {
+            const element: HTMLElement | null = document.getElementById(
+                header.id
+            );
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        return () => observer.disconnect();
+    }, [headers]);
+
     return (
-        <div className="flex flex-col gap-2 text-sm">
+        <div className="w-44 flex flex-col gap-2 text-sm select-none">
             {/* Title */}
-            <div className="flex gap-2.5 items-center select-none">
+            <div className="flex gap-2.5 items-center">
                 <Bars3CenterLeftIcon className="w-5 h-5" />
                 <h1>On This Page</h1>
             </div>
@@ -46,10 +82,17 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                 {headers.map((header: Header) => (
                     <li
                         key={header.id}
-                        className="opacity-65 hover:opacity-80 transition-all transform-gpu"
+                        className={cn(
+                            "hover:opacity-80 transition-all transform-gpu",
+                            activeHeader === header.id
+                                ? "font-semibold text-primary"
+                                : "opacity-65"
+                        )}
                         style={{ marginLeft: `${(header.level - 1) * 16}px` }}
                     >
-                        <Link href={`#${header.id}`}>{header.text}</Link>
+                        <Link href={`#${header.id}`} draggable={false}>
+                            {header.text}
+                        </Link>
                     </li>
                 ))}
             </ul>

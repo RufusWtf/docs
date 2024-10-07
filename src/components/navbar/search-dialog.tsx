@@ -42,7 +42,7 @@ const QuickSearchDialog = ({
         };
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
-    }, []);
+    }, [bindKeybind]);
 
     // Render the contents
     return (

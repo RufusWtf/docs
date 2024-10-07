@@ -48,7 +48,7 @@ const links = {
 };
 
 const Footer = (): ReactElement => (
-    <footer className="mt-3 relative h-[19.5rem] md:h-[17rem] flex justify-center border-t border-zinc-700/75 overflow-hidden select-none">
+    <footer className="relative mt-3 h-[19.5rem] md:h-[17rem] flex justify-center border-t border-zinc-700/75 overflow-hidden select-none">
         <div className="w-full md:max-w-[65rem]">
             <div className="px-5 py-5 md:py-10 w-full flex flex-col md:flex-row items-center justify-around md:items-start gap-7">
                 {/* Top */}

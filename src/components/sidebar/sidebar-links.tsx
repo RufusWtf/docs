@@ -51,14 +51,15 @@ const CategoryItem = ({
     const hasChildren = Object.keys(node.children).length > 0;
 
     return (
-        <div className={`relative ${depth > 0 ? "ml-2.5" : ""} select-none`}>
+        <div className={cn(`relative select-none`, depth > 0 && "ml-2.5")}>
             {/* Indentation */}
             {depth > 0 && (
                 <div
-                    className={`absolute left-0 top-1 bottom-0 border-l-2 border-muted`}
-                    style={{
-                        height: isLast ? "30px" : "100%",
-                    }}
+                    className={cn(
+                        "absolute left-0 bottom-0 border-l-2 border-muted",
+                        isLast ? "h-[32px]" : "h-[100%]",
+                        active && "border-primary"
+                    )}
                 />
             )}
 
@@ -71,9 +72,10 @@ const CategoryItem = ({
                     >
                         <Button
                             className={cn(
-                                `relative px-1.5 ${depth > 0 ? "pl-4" : ""} w-full justify-between`,
+                                `relative w-full px-1.5 h-8 text-base justify-between hover:bg-accent/20`,
+                                depth > 0 && "pl-4",
                                 active &&
-                                    "bg-primary/15 hover:bg-primary/20 text-primary/95 hover:text-primary"
+                                    "text-primary/95 font-bold hover:text-primary"
                             )}
                             variant="ghost"
                         >
@@ -134,7 +136,7 @@ const CategoryItem = ({
 const buildTree = (pages: DocsContentMetadata[]): Record<string, TreeNode> => {
     const tree: Record<string, TreeNode> = {};
 
-    pages.forEach((page) => {
+    pages.forEach((page: DocsContentMetadata) => {
         const parts: string[] | undefined = page.slug?.split("/");
         let currentLevel = tree;
 

@@ -53,7 +53,7 @@ const DocsFooter = ({
             </div>
 
             {/* Pages */}
-            <Separator className="my-4" />
+            <Separator className="my-4 bg-separator-gradient" />
             <div className="flex justify-between">
                 {/* Previous */}
                 {previous && (

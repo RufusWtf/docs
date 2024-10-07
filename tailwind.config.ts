@@ -63,6 +63,10 @@ const config: Config = {
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
             },
+            backgroundImage: {
+                "separator-gradient":
+                    "linear-gradient(90deg, #161619, hsl(var(--muted)), #161619)",
+            },
         },
     },
     plugins: [require("tailwindcss-animate")],

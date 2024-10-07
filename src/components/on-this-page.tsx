@@ -5,8 +5,7 @@ import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { truncateText } from "@/lib/string";
-import { useInView } from "framer-motion";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 type Header = {
     id: string;
@@ -19,12 +18,10 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     const [activeHeader, setActiveHeader] = useState<string | undefined>(
         undefined
     );
+    const observerRef = useRef<IntersectionObserver | undefined>(undefined);
+
     const ref = useRef<HTMLDivElement>(null);
     const inView = useInView(ref);
-
-    const observedHeaderRef = useRef<IntersectionObserver | undefined>(
-        undefined
-    );
 
     useEffect(() => {
         // Regular expression to match markdown headers
@@ -48,8 +45,8 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
 
     useEffect(() => {
         // Cleanup existing observer
-        if (observedHeaderRef.current) {
-            observedHeaderRef.current.disconnect();
+        if (observerRef.current) {
+            observerRef.current.disconnect();
         }
 
         const observer = new IntersectionObserver(
@@ -62,7 +59,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
             },
             { rootMargin: "0px 0px -80% 0px", threshold: 0.1 }
         );
-        observedHeaderRef.current = observer;
+        observerRef.current = observer;
 
         // Observe all header elements
         headers.forEach((header: Header) => {

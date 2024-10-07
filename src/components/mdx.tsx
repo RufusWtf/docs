@@ -8,32 +8,32 @@ import remarkGfm from "remark-gfm";
  */
 const components = {
     h1: ({ children }: { children: ReactNode }): ReactElement => (
-        <Heading size={1} className="text-4xl">
+        <Heading as="h1" size={1} className="text-4xl">
             {children}
         </Heading>
     ),
     h2: ({ children }: { children: ReactNode }): ReactElement => (
-        <Heading size={2} className="text-3xl">
+        <Heading as="h2" size={2} className="text-3xl">
             {children}
         </Heading>
     ),
     h3: ({ children }: { children: ReactNode }): ReactElement => (
-        <Heading size={3} className="text-2xl">
+        <Heading as="h3" size={3} className="text-2xl">
             {children}
         </Heading>
     ),
     h4: ({ children }: { children: ReactNode }): ReactElement => (
-        <Heading size={4} className="text-xl">
+        <Heading as="h4" size={4} className="text-xl">
             {children}
         </Heading>
     ),
     h5: ({ children }: { children: ReactNode }): ReactElement => (
-        <Heading size={5} className="text-lg">
+        <Heading as="h5" size={5} className="text-lg">
             {children}
         </Heading>
     ),
     h6: ({ children }: { children: ReactNode }): ReactElement => (
-        <Heading size={5} className="text-md">
+        <Heading as="h6" size={6} className="text-md">
             {children}
         </Heading>
     ),
@@ -89,15 +89,31 @@ export const CustomMDX = (props: any): ReactElement => (
  * @return the heading jsx
  */
 const Heading = ({
+    as: Component,
     className,
     size,
     children,
 }: {
+    as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     className: string;
     size: number;
     children: ReactNode;
-}): ReactElement => (
-    <h1 className={cn("pt-2.5 font-bold", size >= 2 && "pt-7", className)}>
-        {children}
-    </h1>
-);
+}): ReactElement => {
+    const id: string | undefined =
+        typeof children === "string" ? slugify(children) : undefined;
+    return (
+        <Component
+            id={id}
+            className={cn("pt-2.5 font-bold", size >= 2 && "pt-7", className)}
+        >
+            {children}
+        </Component>
+    );
+};
+
+const slugify = (text: string): string =>
+    text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "")
+        .replace(/[\s_-]+/g, "-")
+        .trim();

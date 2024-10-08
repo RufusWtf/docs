@@ -26,8 +26,8 @@ const DocsPage = async ({
 }: {
     params: Promise<{ slug: string[] }>;
 }): Promise<ReactElement> => {
-    const slug: string = (((await params).slug as string[]) || undefined)?.join(
-        "/"
+    const slug: string = decodeURIComponent(
+        (((await params).slug as string[]) || undefined)?.join("/")
     );
 
     // Get the content to display based on the provided slug

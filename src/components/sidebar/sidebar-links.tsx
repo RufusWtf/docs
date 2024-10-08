@@ -83,7 +83,7 @@ const CategoryItem = ({
                             {hasChildren && (
                                 <motion.div
                                     initial={false}
-                                    animate={{ rotate: isOpen ? 90 : 180 }}
+                                    animate={{ rotate: isOpen ? 90 : 0 }}
                                     transition={{ duration: 0.2 }}
                                 >
                                     <ChevronRight className="w-4 h-4" />

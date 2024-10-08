@@ -47,18 +47,15 @@ const DocsPage = async ({
             {/* Breadcrumb */}
             <Breadcrumb className="pt-4 pb-3 select-none">
                 <BreadcrumbList>
-                    {splitSlug.map(
-                        (part: string, index: number): ReactElement => {
-                            const active: boolean =
-                                index === splitSlug.length - 1;
+                    {splitSlug
+                        .slice(0, -1)
+                        .map((part: string, index: number): ReactElement => {
                             const slug: string = splitSlug
-                                .slice(1, index + 1)
+                                .slice(1, index + 2) // Include one more to account for the index shift
                                 .join("/");
                             return (
                                 <div className="flex items-center" key={part}>
-                                    <BreadcrumbItem
-                                        className={cn(active && "text-primary")}
-                                    >
+                                    <BreadcrumbItem>
                                         <BreadcrumbLink
                                             href={slug}
                                             draggable={false}
@@ -66,13 +63,17 @@ const DocsPage = async ({
                                             {capitalizeWords(part)}
                                         </BreadcrumbLink>
                                     </BreadcrumbItem>
-                                    {index < splitSlug.length - 1 && (
+                                    {index < splitSlug.length - 1 && ( // Adjusted to avoid separator after the last breadcrumb
                                         <BreadcrumbSeparator className="pl-1.5" />
                                     )}
                                 </div>
                             );
-                        }
-                    )}
+                        })}
+                    <BreadcrumbItem className="text-primary">
+                        <BreadcrumbLink href="#" draggable={false}>
+                            {page.title}{" "}
+                        </BreadcrumbLink>
+                    </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
 

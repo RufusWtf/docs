@@ -136,7 +136,16 @@ const CategoryItem = ({
 const buildTree = (pages: DocsContentMetadata[]): Record<string, TreeNode> => {
     const tree: Record<string, TreeNode> = {};
 
-    pages.forEach((page: DocsContentMetadata) => {
+    // Sort pages by the order property
+    const sortedPages = pages.sort(
+        (a: DocsContentMetadata, b: DocsContentMetadata) => {
+            const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
+            const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
+            return orderA - orderB;
+        }
+    );
+
+    sortedPages.forEach((page: DocsContentMetadata) => {
         const parts: string[] | undefined = page.slug?.split("/");
         let currentLevel = tree;
 

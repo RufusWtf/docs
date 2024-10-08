@@ -16,6 +16,11 @@ type DocsContentMetadata = MDXMetadata & {
      * The summary of this content.
      */
     summary: string;
+
+    /**
+     * The order of this content.
+     */
+    order: number;
 };
 
 /**

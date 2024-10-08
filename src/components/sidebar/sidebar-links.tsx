@@ -20,11 +20,11 @@ const SidebarLinks = ({
 }): ReactElement => {
     const tree = useMemo(() => buildTree(pages), [pages]);
     return (
-        <>
+        <div className="flex flex-col gap-1">
             {Object.values(tree).map((node: TreeNode) => (
                 <CategoryItem key={node.slug} node={node} />
             ))}
-        </>
+        </div>
     );
 };
 
@@ -51,7 +51,7 @@ const CategoryItem = ({
     const hasChildren = Object.keys(node.children).length > 0;
 
     return (
-        <div className={cn(`relative select-none`, depth > 0 && "ml-2.5")}>
+        <div className={cn(`relative select-none`, depth > 0 && "ml-4")}>
             {/* Indentation */}
             {depth > 0 && (
                 <div
@@ -72,7 +72,7 @@ const CategoryItem = ({
                     >
                         <Button
                             className={cn(
-                                `relative w-full px-1.5 h-8 text-base justify-between hover:bg-accent/20`,
+                                `relative w-full px-1.5 h-8 lg:text-base justify-between hover:bg-accent/20`,
                                 depth > 0 && "pl-4",
                                 active &&
                                     "text-primary/95 font-bold hover:text-primary"

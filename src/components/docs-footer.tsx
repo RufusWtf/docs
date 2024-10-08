@@ -46,7 +46,7 @@ const DocsFooter = ({
                         pages[current]?.published
                     ).toLocaleString(DateTime.DATETIME_MED)}
                 >
-                    <span className="text-sm opacity-75">
+                    <span className="text-xs sm:text-sm opacity-75 transition-all transform-gpu">
                         Published {publicationDate}
                     </span>
                 </SimpleTooltip>
@@ -56,7 +56,7 @@ const DocsFooter = ({
             {previous || next ? (
                 <Separator className="my-4 bg-separator-gradient" />
             ) : undefined}
-            <div className="flex justify-between">
+            <div className="flex justify-between text-xs sm:text-base">
                 {/* Previous */}
                 {previous && (
                     <Link

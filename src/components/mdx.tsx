@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { capitalizeWords } from "@/lib/string";
+import ImageViewer from "@/components/image-viewer";
 
 const blockquoteStyles: { [key: string]: any } = {
     NOTE: {
@@ -94,12 +95,14 @@ const components = {
 
     // Media
     img: ({ src, alt }: { src: string; alt: string }): ReactElement => (
-        <img
-            className="m-2 my-2.5 rounded-2xl ring-1 ring-muted/45 select-none"
-            src={src}
-            alt={alt}
-            draggable={false}
-        />
+        <ImageViewer className="m-2 my-2.5">
+            <img
+                className="ring-1 ring-muted/45 rounded-2xl select-none"
+                src={src}
+                alt={alt}
+                draggable={false}
+            />
+        </ImageViewer>
     ),
 
     // Lists

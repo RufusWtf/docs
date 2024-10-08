@@ -1,9 +1,5 @@
 import { ReactElement, ReactNode } from "react";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { SIDE_OPTIONS } from "@radix-ui/react-popper";
 
 /**

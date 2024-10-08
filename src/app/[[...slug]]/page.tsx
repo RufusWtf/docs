@@ -13,7 +13,6 @@ import { capitalizeWords } from "@/lib/string";
 import { Metadata } from "next";
 import Embed from "@/components/embed";
 import DocsFooter from "@/components/docs-footer";
-import { cn } from "@/lib/utils";
 import OnThisPage from "@/components/on-this-page";
 
 /**

@@ -13,7 +13,7 @@ const DocsFooter = ({
 }: {
     pages: DocsContentMetadata[];
 }): ReactElement => {
-    const path: string = usePathname();
+    const path: string = decodeURIComponent(usePathname());
 
     const current: number = pages.findIndex(
         (page: DocsContentMetadata) =>

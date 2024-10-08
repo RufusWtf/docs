@@ -136,32 +136,26 @@ const CategoryItem = ({
 const buildTree = (pages: DocsContentMetadata[]): Record<string, TreeNode> => {
     const tree: Record<string, TreeNode> = {};
 
-    pages
-        .sort((a: DocsContentMetadata, b: DocsContentMetadata) => {
-            const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
-            const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
-            return orderA - orderB;
-        })
-        .forEach((page: DocsContentMetadata) => {
-            const parts: string[] | undefined = page.slug?.split("/");
-            let currentLevel = tree;
+    pages.forEach((page: DocsContentMetadata) => {
+        const parts: string[] | undefined = page.slug?.split("/");
+        let currentLevel = tree;
 
-            parts?.forEach((part: string, index: number) => {
-                if (!currentLevel[part]) {
-                    currentLevel[part] = {
-                        title: part,
-                        slug: parts.slice(0, index + 1).join("/"),
-                        isFolder: index < parts.length - 1,
-                        children: {},
-                    };
-                }
-                if (index === parts.length - 1) {
-                    currentLevel[part].title = page.title;
-                    currentLevel[part].isFolder = false;
-                }
-                currentLevel = currentLevel[part].children;
-            });
+        parts?.forEach((part: string, index: number) => {
+            if (!currentLevel[part]) {
+                currentLevel[part] = {
+                    title: part,
+                    slug: parts.slice(0, index + 1).join("/"),
+                    isFolder: index < parts.length - 1,
+                    children: {},
+                };
+            }
+            if (index === parts.length - 1) {
+                currentLevel[part].title = page.title;
+                currentLevel[part].isFolder = false;
+            }
+            currentLevel = currentLevel[part].children;
         });
+    });
     return tree;
 };
 

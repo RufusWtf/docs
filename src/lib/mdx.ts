@@ -21,7 +21,11 @@ export const getDocsContent = (): DocsContentMetadata[] => {
     for (const directory of getRecursiveDirectories(DOCS_DIR)) {
         content.push(...getMetadata<DocsContentMetadata>(DOCS_DIR, directory));
     }
-    return content;
+    return content.sort((a: DocsContentMetadata, b: DocsContentMetadata) => {
+        const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
+        const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
+        return orderA - orderB;
+    });
 };
 
 /**

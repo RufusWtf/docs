@@ -32,6 +32,7 @@
     "react-dom": "^19.0.0-rc-1460d67c-20241003",
     "remark-gfm": "^4.0.0",
     "remote-mdx": "^0.0.8",
+    "simple-git": "^3.27.0",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7"
   },

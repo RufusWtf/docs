@@ -30,7 +30,7 @@ const DocsPage = async ({
     );
 
     // Get the content to display based on the provided slug
-    const pages: DocsContentMetadata[] = getDocsContent();
+    const pages: DocsContentMetadata[] = await getDocsContent();
     const decodedSlug: string = decodeURIComponent(slug || "");
     const page: DocsContentMetadata | undefined = pages.find(
         (metadata: DocsContentMetadata): boolean =>
@@ -101,7 +101,9 @@ export const generateMetadata = async ({
         "/"
     ); // The slug of the content
     if (slug) {
-        const content: DocsContentMetadata | undefined = getDocsContent().find(
+        const content: DocsContentMetadata | undefined = (
+            await getDocsContent()
+        ).find(
             (metadata: DocsContentMetadata): boolean => metadata.slug === slug
         ); // Get the content based on the provided slug
         if (content) {

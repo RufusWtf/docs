@@ -38,12 +38,12 @@ export const viewport: Viewport = {
 /**
  * The primary layout for this app.
  */
-const RootLayout = ({
+const RootLayout = async ({
     children,
 }: Readonly<{
     children: ReactNode;
-}>): ReactElement => {
-    const pages: DocsContentMetadata[] = getDocsContent();
+}>): Promise<ReactElement> => {
+    const pages: DocsContentMetadata[] = await getDocsContent();
     return (
         <html lang="en">
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

@@ -80,8 +80,8 @@ const Footer = (): ReactElement => (
 
             {/* Copyright */}
             <p className="absolute inset-x-0 bottom-3.5 flex text-sm text-center justify-center opacity-60">
-                Copyright &copy; {new Date().getFullYear()} Pulse App. All
-                rights reserved.
+                Copyright &copy; {new Date().getFullYear()} {config.siteName}.
+                All rights reserved.
             </p>
         </div>
 
@@ -104,12 +104,12 @@ const Branding = () => (
     >
         <Image
             src="/media/logo.png"
-            alt="Pulse App Logo"
+            alt={`${config.siteName} Logo`}
             width={40}
             height={40}
             draggable={false}
         />
-        <h1 className="text-xl font-bold">Pulse App</h1>
+        <h1 className="text-xl font-bold">{config.siteName}</h1>
     </Link>
 );
 

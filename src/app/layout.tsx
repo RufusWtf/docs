@@ -7,33 +7,13 @@ import Sidebar from "@/components/sidebar/sidebar";
 import Footer from "@/components/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { getDocsContent } from "@/lib/mdx";
+import config from "@/config";
 
 /**
  * The metadata for this app.
  */
-export const metadata: Metadata = {
-    title: {
-        default: "Pulse Docs",
-        template: "%s • Pulse Docs",
-    },
-    description:
-        "A lightweight service monitoring solution for tracking the availability of whatever service your heart desires!",
-    openGraph: {
-        images: [
-            {
-                url: "https://pulseapp.cc/media/logo.png",
-                width: 128,
-                height: 128,
-            },
-        ],
-    },
-    twitter: {
-        card: "summary",
-    },
-};
-export const viewport: Viewport = {
-    themeColor: "#A855F7",
-};
+export const metadata: Metadata = config.metadata;
+export const viewport: Viewport = config.viewport;
 
 /**
  * The primary layout for this app.

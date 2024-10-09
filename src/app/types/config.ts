@@ -1,4 +1,21 @@
-type Config = {
+import type { Metadata, Viewport } from "next";
+
+export type Config = {
+    /**
+     * The name of this app.
+     */
+    siteName: string;
+
+    /**
+     * The metadata for this app.
+     */
+    metadata: Metadata;
+
+    /**
+     * The viewport for this app.
+     */
+    viewport: Viewport;
+
     /**
      * The source to get the content from.
      * This can either be a local source, or

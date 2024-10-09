@@ -20,7 +20,7 @@ const Navbar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
                 <h1 className="text-lg font-semibold">docs.</h1>
                 <Image
                     src="/media/logo.png"
-                    alt="Pulse App Logo"
+                    alt={`${config.siteName} Logo`}
                     width={36}
                     height={36}
                     draggable={false}

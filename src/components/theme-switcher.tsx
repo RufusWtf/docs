@@ -54,5 +54,4 @@ const ThemeSwitcher = (): ReactElement => {
         </div>
     );
 };
-
 export default ThemeSwitcher;

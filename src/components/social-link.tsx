@@ -22,7 +22,7 @@ const SocialLink = ({
     <SimpleTooltip content={tooltip}>
         <Link
             className={cn(
-                "w-6 h-6 hover:opacity-75 transition-all transform-gpu",
+                "w-6 h-6 hover:opacity-75 transition-all transform-gpu select-none",
                 className
             )}
             href={href}

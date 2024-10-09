@@ -52,7 +52,7 @@ const QuickSearchDialog = ({
                 className="cursor-pointer hover:opacity-85 transition-all transform-gpu select-none"
                 onClick={() => setOpen(true)}
             >
-                <div className="absolute top-2.5 left-3 z-10">
+                <div className="absolute top-[0.55rem] left-3 z-10">
                     <Search className="w-[1.15rem] h-[1.15rem]" />
                 </div>
 

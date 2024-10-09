@@ -5,8 +5,9 @@ import AnimatedGridPattern from "@/components/ui/animated-grid-pattern";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { ExternalLink, Mail } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import SocialLink from "@/components/social-link";
+import config from "@/config";
 
 const links = {
     Resources: [
@@ -55,27 +56,13 @@ const Footer = (): ReactElement => (
 
                     {/* Socials */}
                     <div className="pl-1 flex gap-2.5 items-center z-50">
-                        <SocialLink
-                            className="w-5 h-5"
-                            name="GitHub"
-                            tooltip="View our Github"
-                            logo="github.svg"
-                            href="https://github.com/PulseAppCC"
-                        />
-                        <SocialLink
-                            className="w-5 h-5"
-                            name="Discord"
-                            tooltip="Join our Discord"
-                            logo="discord.svg"
-                            href="https://discord.pulseapp.cc"
-                        />
-                        <SocialLink
-                            className="w-5 h-5"
-                            name="Email"
-                            tooltip="Email us"
-                            logo={<Mail className="opacity-95 w-full h-full" />}
-                            href="mailto:support@pulseapp.cc"
-                        />
+                        {config.socialLinks.map((link: SocialLink) => (
+                            <SocialLink
+                                key={link.name}
+                                className="w-5 h-5"
+                                {...link}
+                            />
+                        ))}
                     </div>
                 </div>
 

@@ -1,0 +1,26 @@
+{
+  "contentSource": "{process}/docs",
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "tooltip": "View our Github",
+      "logo": "./github.svg",
+      "href": "https://github.com/PulseAppCC",
+      "navbar": true
+    },
+    {
+      "name": "Discord",
+      "tooltip": "Join our Discord",
+      "logo": "./discord.svg",
+      "href": "https://discord.pulseapp.cc",
+      "navbar": true
+    },
+    {
+      "name": "Email",
+      "tooltip": "Email us",
+      "logo": "Mail",
+      "href": "mailto:support@pulseapp.cc",
+      "navbar": false
+    }
+  ]
+}

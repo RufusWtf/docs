@@ -24,6 +24,15 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@/config": [
+        "./src/app/config.ts"
+      ],
+      "@/types/*": [
+        "./src/app/types/*"
+      ],
+      "@/configJson": [
+        "./config.json"
       ]
     },
     "target": "ES2017"

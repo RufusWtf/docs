@@ -1,15 +1,12 @@
-import { ReactElement } from "react";
 import SimpleTooltip from "@/components/simple-tooltip";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Icon from "@/components/ui/icon";
+import { icons } from "lucide-react";
 
-type SocialLinkProps = {
+type SocialLinkProps = SocialLink & {
     className?: string | undefined;
-    name: string;
-    tooltip: string;
-    logo: string | ReactElement;
-    href: string;
 };
 
 const SocialLink = ({
@@ -29,15 +26,18 @@ const SocialLink = ({
             target="_blank"
             draggable={false}
         >
-            {typeof logo === "string" ? (
+            {logo.startsWith("./") ? (
                 <Image
-                    src={`/media/${logo}`}
+                    src={`/media/${logo.substring(2)}`}
                     alt={`${name}'s Logo`}
                     fill
                     draggable={false}
                 />
             ) : (
-                logo
+                <Icon
+                    className="opacity-95 w-full h-full"
+                    name={logo as keyof typeof icons}
+                />
             )}
         </Link>
     </SimpleTooltip>

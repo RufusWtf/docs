@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import { Stats } from "node:fs";
 import path from "node:path";
+import config from "@/config";
 
 /**
  * The regex to match for metadata.
@@ -10,7 +11,9 @@ const METADATA_REGEX: RegExp = /---\s*([\s\S]*?)\s*---/;
 /**
  * The directory docs are stored in.
  */
-const DOCS_DIR: string = path.join(process.cwd(), "docs");
+const DOCS_DIR: string = path.join(
+    config.contentSource.replace("{process}", process.cwd())
+);
 
 /**
  * Get the content to

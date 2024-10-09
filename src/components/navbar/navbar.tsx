@@ -6,6 +6,7 @@ import Image from "next/image";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import Sidebar from "@/components/sidebar/sidebar";
 import SocialLink from "@/components/social-link";
+import config from "@/config";
 
 const Navbar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
     <nav className="fixed left-0 inset-x-0 bg-white/95 dark:bg-white/[0.007] backdrop-saturate-100 backdrop-blur-xl border-b z-50">
@@ -35,18 +36,11 @@ const Navbar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
 
                 {/* Social */}
                 <div className="flex gap-5 items-center">
-                    <SocialLink
-                        name="GitHub"
-                        tooltip="View our Github"
-                        logo="github.svg"
-                        href="https://github.com/PulseAppCC"
-                    />
-                    <SocialLink
-                        name="Discord"
-                        tooltip="Join our Discord"
-                        logo="discord.svg"
-                        href="https://discord.pulseapp.cc"
-                    />
+                    {config.socialLinks
+                        .filter((link: SocialLink) => link.navbar)
+                        .map((link: SocialLink) => (
+                            <SocialLink key={link.name} {...link} />
+                        ))}
                 </div>
 
                 {/* Mobile Sidebar */}

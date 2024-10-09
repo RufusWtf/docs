@@ -10,9 +10,9 @@ import SimpleTooltip from "@/components/simple-tooltip";
 import { capitalizeWords } from "@/lib/string";
 
 const themes = {
+    system: <Monitor className="w-4 h-4" />,
     dark: <MoonStar className="w-4 h-4" />,
     light: <Sun className="w-4 h-4" />,
-    system: <Monitor className="w-4 h-4" />,
 };
 
 /**

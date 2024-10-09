@@ -51,7 +51,7 @@ const CategoryItem = ({
     const hasChildren = Object.keys(node.children).length > 0;
 
     return (
-        <div className={cn(`relative select-none`, depth > 0 && "ml-4")}>
+        <div className={cn(`relative select-none`, depth > 0 && "ml-3")}>
             {/* Indentation */}
             {depth > 0 && (
                 <div
@@ -72,10 +72,13 @@ const CategoryItem = ({
                     >
                         <Button
                             className={cn(
-                                `relative w-full px-1.5 h-8 lg:text-base justify-between hover:bg-accent/20`,
+                                `relative w-full px-1.5 h-8 justify-between hover:bg-accent/35`,
+                                node.isFolder
+                                    ? "mb-0.5 text-sm font-semibold"
+                                    : "lg:text-base",
                                 depth > 0 && "pl-4",
                                 active &&
-                                    "text-primary/95 font-bold hover:text-primary"
+                                    "text-primary/95 font-semibold hover:text-primary"
                             )}
                             variant="ghost"
                         >

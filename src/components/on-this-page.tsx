@@ -33,7 +33,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
         let match;
         while ((match = headerRegex.exec(page.content)) !== null) {
             const level: number = match[1].length; // The number of # symbols determines the header level
-            const text: string = match[2].trim();
+            const text: string = match[2].trim().replace(/<[^>]*>/g, "");
             const id: string = text
                 .toLowerCase()
                 .replace(/\s+/g, "-")
@@ -79,7 +79,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
     return (
         <motion.div
             ref={ref}
-            className="sticky top-[7rem] w-44 max-h-[calc(100vh-3.5rem)] flex flex-col gap-2 text-sm select-none"
+            className="sticky top-[7.5rem] w-44 max-h-[calc(100vh-3.5rem)] flex flex-col gap-2 text-sm select-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: inView ? 1 : 0 }}
             transition={{ duration: 0.2 }}
@@ -119,7 +119,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                             draggable={false}
                             className="block py-1"
                         >
-                            {truncateText(header.text, 24)}
+                            {truncateText(header.text, 20)}
                         </Link>
                     </li>
                 ))}

@@ -24,14 +24,14 @@ const DocsFooter = ({
     const next: DocsContentMetadata | undefined =
         current < pages.length - 1 ? pages[current + 1] : undefined;
 
-    const [publicationDate, setPublicationDate] = useState<string | null>(
-        DateTime.fromISO(pages[current]?.published).toRelative()
+    const [updatedDate, setUpdatedDate] = useState<string | null>(
+        DateTime.fromISO(pages[current]?.updated).toRelative()
     );
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setPublicationDate(
-                DateTime.fromISO(pages[current]?.published).toRelative()
+            setUpdatedDate(
+                DateTime.fromISO(pages[current]?.updated).toRelative()
             );
         }, 1000);
         return () => clearInterval(interval);
@@ -39,15 +39,15 @@ const DocsFooter = ({
 
     return (
         <footer className="xs:mx-5 sm:mx-10 my-2 flex flex-col select-none transition-all transform-gpu">
-            {/* Publish Date */}
+            {/* updated Date */}
             <div className="ml-auto pt-4">
                 <SimpleTooltip
-                    content={DateTime.fromISO(
-                        pages[current]?.published
-                    ).toLocaleString(DateTime.DATETIME_MED)}
+                    content={`Last updated on ${DateTime.fromISO(
+                        pages[current]?.updated
+                    ).toLocaleString(DateTime.DATETIME_MED)}`}
                 >
                     <span className="text-xs sm:text-sm opacity-75 transition-all transform-gpu">
-                        Published {publicationDate}
+                        Updated {updatedDate}
                     </span>
                 </SimpleTooltip>
             </div>

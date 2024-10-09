@@ -1,13 +1,12 @@
 import { ReactElement } from "react";
 import { Separator } from "@/components/ui/separator";
-import { getDocsContent } from "@/lib/mdx";
 import SidebarLinks from "@/components/sidebar/sidebar-links";
 import ThemeSwitcher from "@/components/theme-switcher";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import { AlignRightIcon } from "lucide-react";
 
-const Sidebar = (): ReactElement => (
+const Sidebar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
     <>
         {/* Mobile */}
         <div className="xs:hidden">
@@ -16,37 +15,38 @@ const Sidebar = (): ReactElement => (
                     <AlignRightIcon className="w-6 h-6" />
                 </SheetTrigger>
                 <SheetContent className="h-full px-5 pt-11" side="right">
-                    <SidebarContent />
+                    <SidebarContent pages={pages} />
                 </SheetContent>
             </Sheet>
         </div>
 
         {/* Desktop */}
         <div className="hidden xs:flex sticky top-[4.5rem] max-h-[calc(100vh-3.5rem)] overflow-y-auto min-w-32 w-40 lg:w-52 py-5 flex-col justify-between transition-all transform-gpu">
-            <SidebarContent />
+            <SidebarContent pages={pages} />
         </div>
     </>
 );
 
-const SidebarContent = (): ReactElement => {
-    const pages: DocsContentMetadata[] = getDocsContent();
-    return (
-        <div className="h-full flex flex-col justify-between">
-            {/* Top */}
-            <div className="flex flex-col">
-                <div className="xs:hidden pb-3">
-                    <QuickSearchDialog pages={pages} />
-                </div>
-                <SidebarLinks pages={pages} />
+const SidebarContent = ({
+    pages,
+}: {
+    pages: DocsContentMetadata[];
+}): ReactElement => (
+    <div className="h-full flex flex-col justify-between">
+        {/* Top */}
+        <div className="flex flex-col">
+            <div className="xs:hidden pb-3">
+                <QuickSearchDialog pages={pages} />
             </div>
-
-            {/* Theme Switcher */}
-            <div className="flex flex-col items-center">
-                <Separator className="mb-3 bg-separator-gradient" />
-                <ThemeSwitcher />
-            </div>
+            <SidebarLinks pages={pages} />
         </div>
-    );
-};
+
+        {/* Theme Switcher */}
+        <div className="flex flex-col items-center">
+            <Separator className="mb-3 bg-separator-gradient" />
+            <ThemeSwitcher />
+        </div>
+    </div>
+);
 
 export default Sidebar;

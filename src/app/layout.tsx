@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/navbar";
 import Sidebar from "@/components/sidebar/sidebar";
 import Footer from "@/components/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { getDocsContent } from "@/lib/mdx";
 
 /**
  * The metadata for this app.
@@ -41,29 +42,32 @@ const RootLayout = ({
     children,
 }: Readonly<{
     children: ReactNode;
-}>): ReactElement => (
-    <html lang="en">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <body
-                className="scroll-smooth antialiased"
-                style={{
-                    background: "var(--background-gradient)",
-                }}
-            >
-                <TooltipProvider delayDuration={100}>
-                    <div className="px-3 md:px-7 max-w-screen-2xl min-h-screen mx-auto flex flex-col transition-all">
-                        <Navbar />
-                        <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5">
-                            <div className="relative hidden xs:flex">
-                                <Sidebar />
+}>): ReactElement => {
+    const pages: DocsContentMetadata[] = getDocsContent();
+    return (
+        <html lang="en">
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+                <body
+                    className="scroll-smooth antialiased"
+                    style={{
+                        background: "var(--background-gradient)",
+                    }}
+                >
+                    <TooltipProvider delayDuration={100}>
+                        <div className="px-3 md:px-7 max-w-screen-2xl min-h-screen mx-auto flex flex-col transition-all">
+                            <Navbar pages={pages} />
+                            <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5 sm:gap-8 transition-all transform-gpu">
+                                <div className="relative hidden xs:flex">
+                                    <Sidebar pages={pages} />
+                                </div>
+                                {children}
                             </div>
-                            {children}
                         </div>
-                    </div>
-                    <Footer />
-                </TooltipProvider>
-            </body>
-        </ThemeProvider>
-    </html>
-);
+                        <Footer />
+                    </TooltipProvider>
+                </body>
+            </ThemeProvider>
+        </html>
+    );
+};
 export default RootLayout;

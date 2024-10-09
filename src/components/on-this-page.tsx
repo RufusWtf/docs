@@ -106,7 +106,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
                         {/* Indentation */}
                         {header.level > 1 && (
                             <div
-                                className="absolute left-0 top-0 bottom-0 border-l border-muted"
+                                className="absolute left-0 top-0 bottom-0 border-l border-accent"
                                 style={{
                                     left: `${(header.level - 2) * 16 + 4}px`,
                                 }}

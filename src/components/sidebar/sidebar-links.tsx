@@ -56,7 +56,7 @@ const CategoryItem = ({
             {depth > 0 && (
                 <div
                     className={cn(
-                        "absolute left-0 bottom-0 border-l border-muted",
+                        "absolute left-0 bottom-0 border-l border-accent",
                         isLast ? "h-[32px]" : "h-[100%]",
                         active && "border-primary"
                     )}

@@ -83,14 +83,16 @@ export function GridPattern({
                 });
             }
         });
+        let current = undefined;
 
         if (containerRef.current) {
             resizeObserver.observe(containerRef.current);
+            current = containerRef.current;
         }
 
         return () => {
-            if (containerRef.current) {
-                resizeObserver.unobserve(containerRef.current);
+            if (current) {
+                resizeObserver.unobserve(current);
             }
         };
     }, [containerRef]);

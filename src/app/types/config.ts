@@ -26,10 +26,10 @@ export type Config = {
     /**
      * Social links for this app.
      */
-    socialLinks: SocialLink[];
+    socialLinks: SocialLinkType[];
 };
 
-type SocialLink = {
+export type SocialLinkType = {
     /**
      * The name of this social link.
      */

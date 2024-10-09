@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import SocialLink from "@/components/social-link";
 import config from "@/config";
+import { SocialLinkType } from "@/types/config";
 
 const links = {
     Resources: [
@@ -56,7 +57,7 @@ const Footer = (): ReactElement => (
 
                     {/* Socials */}
                     <div className="pl-1 flex gap-2.5 items-center z-50">
-                        {config.socialLinks.map((link: SocialLink) => (
+                        {config.socialLinks.map((link: SocialLinkType) => (
                             <SocialLink
                                 key={link.name}
                                 className="w-5 h-5"

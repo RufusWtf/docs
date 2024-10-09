@@ -4,8 +4,9 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Icon from "@/components/ui/icon";
 import { icons } from "lucide-react";
+import { SocialLinkType } from "@/types/config";
 
-type SocialLinkProps = SocialLink & {
+type SocialLinkProps = SocialLinkType & {
     className?: string | undefined;
 };
 

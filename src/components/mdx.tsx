@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { capitalizeWords } from "@/lib/string";
 import ImageViewer from "@/components/image-viewer";
+import Image from "next/image";
 
 const blockquoteStyles: { [key: string]: any } = {
     NOTE: {
@@ -96,10 +97,13 @@ const components = {
     // Media
     img: ({ src, alt }: { src: string; alt: string }): ReactElement => (
         <ImageViewer className="m-2 my-2.5">
-            <img
+            <Image
                 className="ring-1 ring-muted/45 rounded-2xl select-none"
                 src={src}
                 alt={alt}
+                width={1920}
+                height={1080}
+                unoptimized
                 draggable={false}
             />
         </ImageViewer>

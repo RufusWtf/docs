@@ -14,7 +14,6 @@ WORKDIR /usr/src/app
 COPY --from=depends /usr/src/app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN --mount=type=bind,target=/config,from=docs cp /config/config.json ./config.json
 RUN bun run build
 
 

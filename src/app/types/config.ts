@@ -27,6 +27,23 @@ export type Config = {
      * Social links for this app.
      */
     socialLinks: SocialLinkType[];
+
+    /**
+     * Configuration for the footer.
+     */
+    footer: {
+        /**
+         * The URL to link to when the branding is clicked.
+         */
+        homeUrl: string;
+
+        /**
+         * Links for the footer.
+         */
+        links: {
+            [category: string]: FooterLink[];
+        };
+    };
 };
 
 export type SocialLinkType = {
@@ -56,4 +73,27 @@ export type SocialLinkType = {
      * Whether to show this social link in the navbar.
      */
     navbar: boolean;
+};
+
+export type FooterLink = {
+    /**
+     * The name of this link.
+     */
+    name: string;
+
+    /**
+     * The href for this link.
+     */
+    href: string;
+
+    /**
+     * The optional name to show
+     * when the screen size is small.
+     */
+    shortName?: string;
+
+    /**
+     * Is this an external link?
+     */
+    external?: boolean;
 };

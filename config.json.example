@@ -45,5 +45,44 @@
       "href": "mailto:support@pulseapp.cc",
       "navbar": false
     }
-  ]
+  ],
+  "footer": {
+    "homeUrl": "https://pulseapp.cc",
+    "links": {
+      "Resources": [
+        {
+          "name": "Support",
+          "href": "https://support.pulseapp.cc"
+        },
+        {
+          "name": "Jobs",
+          "href": "https://jobs.pulseapp.cc"
+        },
+        {
+          "name": "Developers",
+          "shortName": "Devs",
+          "href": "https://dev.pulseapp.cc",
+          "external": true
+        },
+        {
+          "name": "System Status",
+          "shortName": "Status",
+          "href": "https://status.pulseapp.cc",
+          "external": true
+        }
+      ],
+      "Legal": [
+        {
+          "name": "Terms & Conditions",
+          "shortName": "Terms",
+          "href": "/legal/terms"
+        },
+        {
+          "name": "Privacy Policy",
+          "shortName": "Privacy",
+          "href": "/legal/privacy"
+        }
+      ]
+    }
+  }
 }

@@ -10,43 +10,6 @@ import SocialLink from "@/components/social-link";
 import config from "@/config";
 import { SocialLinkType } from "@/types/config";
 
-const links = {
-    Resources: [
-        {
-            name: "Support",
-            href: "https://support.pulseapp.cc",
-        },
-        {
-            name: "Jobs",
-            href: "https://jobs.pulseapp.cc",
-        },
-        {
-            name: "Developers",
-            shortName: "Devs",
-            href: "https://dev.pulseapp.cc",
-            external: true,
-        },
-        {
-            name: "System Status",
-            shortName: "Status",
-            href: "https://status.pulseapp.cc",
-            external: true,
-        },
-    ],
-    Legal: [
-        {
-            name: "Terms & Conditions",
-            shortName: "Terms",
-            href: "/legal/terms",
-        },
-        {
-            name: "Privacy Policy",
-            shortName: "Privacy",
-            href: "/legal/privacy",
-        },
-    ],
-};
-
 const Footer = (): ReactElement => (
     <footer className="relative mt-3 h-[19.5rem] md:h-[17rem] flex justify-center border-t border-zinc-700/75 overflow-hidden select-none">
         <div className="w-full md:max-w-[65rem]">
@@ -69,13 +32,15 @@ const Footer = (): ReactElement => (
 
                 {/* Links */}
                 <div className="flex gap-7 md:gap-12 transition-all transform-gpu">
-                    {Object.entries(links).map(([title, links]) => (
-                        <LinkCategory key={title} title={title}>
-                            {links.map((link) => (
-                                <FooterLink key={link.name} {...link} />
-                            ))}
-                        </LinkCategory>
-                    ))}
+                    {Object.entries(config.footer.links).map(
+                        ([title, links]) => (
+                            <LinkCategory key={title} title={title}>
+                                {links.map((link) => (
+                                    <FooterLink key={link.name} {...link} />
+                                ))}
+                            </LinkCategory>
+                        )
+                    )}
                 </div>
             </div>
 
@@ -100,7 +65,7 @@ const Footer = (): ReactElement => (
 const Branding = () => (
     <Link
         className="flex gap-3 items-center hover:opacity-75 transition-all transform-gpu"
-        href="https://pulseapp.cc"
+        href={config.footer.homeUrl}
         draggable={false}
     >
         <Image

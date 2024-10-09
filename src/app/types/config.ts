@@ -91,9 +91,4 @@ export type FooterLink = {
      * when the screen size is small.
      */
     shortName?: string;
-
-    /**
-     * Is this an external link?
-     */
-    external?: boolean;
 };

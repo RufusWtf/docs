@@ -3,7 +3,7 @@
   "metadata": {
     "title": {
       "default": "Pulse Docs",
-      "template": "Pulse Docs"
+      "template": "%s • Pulse Docs"
     },
     "description": "A lightweight service monitoring solution for tracking the availability of whatever service your heart desires!",
     "openGraph": {

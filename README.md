@@ -1,3 +1,2 @@
 # docs
-
-The public documentation for Pulse App.
+The source coded for the Pulse App documentation site.

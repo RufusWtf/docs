@@ -43,7 +43,7 @@ const SidebarContent = ({
 
         {/* Theme Switcher */}
         <div className="flex flex-col items-center">
-            <Separator className="mb-3 bg-separator-gradient" />
+            <Separator className="mb-3 dark:bg-separator-gradient" />
             <ThemeSwitcher />
         </div>
     </div>

@@ -5,9 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import Sidebar from "@/components/sidebar/sidebar";
+import SocialLink from "@/components/social-link";
 
 const Navbar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
-    <nav className="fixed left-0 inset-x-0 bg-white/[0.007] backdrop-saturate-100 backdrop-blur-xl border-b z-50">
+    <nav className="fixed left-0 inset-x-0 bg-white/95 dark:bg-white/[0.007] backdrop-saturate-100 backdrop-blur-xl border-b z-50">
         <div className="px-3 md:px-7 max-w-screen-2xl mx-auto py-4 flex justify-between items-center transition-all transform-gpu">
             {/* Branding */}
             <Link
@@ -36,13 +37,15 @@ const Navbar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
                 <div className="flex gap-5 items-center">
                     <SocialLink
                         name="GitHub"
-                        link="https://github.com/PulseAppCC"
-                        icon="/media/github.svg"
+                        tooltip="View our Github"
+                        logo="github.svg"
+                        href="https://github.com/PulseAppCC"
                     />
                     <SocialLink
                         name="Discord"
-                        link="https://discord.pulseapp.cc"
-                        icon="/media/discord.svg"
+                        tooltip="Join our Discord"
+                        logo="discord.svg"
+                        href="https://discord.pulseapp.cc"
                     />
                 </div>
 
@@ -54,21 +57,4 @@ const Navbar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
         </div>
     </nav>
 );
-
-const SocialLink = ({
-    name,
-    link,
-    icon,
-}: {
-    name: string;
-    link: string;
-    icon: string;
-}): ReactElement => (
-    <div className="relative w-6 h-6 hover:opacity-75 transition-all transform-gpu select-none">
-        <Link href={link} target="_blank" draggable={false}>
-            <Image src={icon} alt={`${name} Logo`} fill draggable={false} />
-        </Link>
-    </div>
-);
-
 export default Navbar;

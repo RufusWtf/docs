@@ -29,7 +29,7 @@ const ThemeSwitcher = (): ReactElement => {
     }, []);
 
     return (
-        <div className="w-fit p-1 flex gap-1.5 bg-black/30 ring-1 ring-white/5 rounded-full">
+        <div className="w-fit p-1 flex gap-1.5 bg-gray-600/5 dark:bg-black/30 ring-1 light:ring-inset ring-gray-600/5 dark:ring-white/5 rounded-full">
             {Object.entries(themes).map(([theme, icon]) => {
                 const active: boolean = mounted && theme === activeTheme;
                 return (
@@ -41,7 +41,7 @@ const ThemeSwitcher = (): ReactElement => {
                             className={cn(
                                 "p-1 h-6 opacity-80 rounded-full",
                                 active &&
-                                    "ring-1 bg-zinc-900 ring-white/15 opacity-100"
+                                    "ring-1 bg-white dark:bg-zinc-900 ring-gray-900/10 dark:ring-white/15 hover:bg-white hover:dark:bg-zinc-900 opacity-100"
                             )}
                             variant="ghost"
                             onClick={() => setTheme(theme)}

@@ -39,7 +39,10 @@ const SimpleTooltip = ({
 }: SimpleTooltipProps): ReactElement => (
     <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className="bg-muted text-white" side={side}>
+        <TooltipContent
+            className="bg-accent text-accent-foreground"
+            side={side}
+        >
             {content}
         </TooltipContent>
     </Tooltip>

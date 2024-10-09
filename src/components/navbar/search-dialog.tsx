@@ -114,5 +114,4 @@ const QuickSearchDialog = ({
         </>
     );
 };
-
 export default QuickSearchDialog;

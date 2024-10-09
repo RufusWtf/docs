@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ExternalLink, Mail } from "lucide-react";
+import SocialLink from "@/components/social-link";
 
 const links = {
     Resources: [
@@ -55,18 +56,24 @@ const Footer = (): ReactElement => (
                     {/* Socials */}
                     <div className="pl-1 flex gap-2.5 items-center z-50">
                         <SocialLink
+                            className="w-5 h-5"
                             name="GitHub"
+                            tooltip="View our Github"
                             logo="github.svg"
                             href="https://github.com/PulseAppCC"
                         />
                         <SocialLink
+                            className="w-5 h-5"
                             name="Discord"
+                            tooltip="Join our Discord"
                             logo="discord.svg"
                             href="https://discord.pulseapp.cc"
                         />
                         <SocialLink
+                            className="w-5 h-5"
                             name="Email"
-                            logo={<Mail className="opacity-95 w-6 h-6" />}
+                            tooltip="Email us"
+                            logo={<Mail className="opacity-95 w-full h-full" />}
                             href="mailto:support@pulseapp.cc"
                         />
                     </div>
@@ -116,35 +123,6 @@ const Branding = () => (
             draggable={false}
         />
         <h1 className="text-xl font-bold">Pulse App</h1>
-    </Link>
-);
-
-const SocialLink = ({
-    name,
-    logo,
-    href,
-}: {
-    name: string;
-    logo: string | ReactElement;
-    href: string;
-}) => (
-    <Link
-        className="hover:opacity-75 transition-all transform-gpu"
-        href={href}
-        target="_blank"
-        draggable={false}
-    >
-        {typeof logo === "string" ? (
-            <Image
-                src={`/media/${logo}`}
-                alt={`${name}'s Logo`}
-                width={20}
-                height={20}
-                draggable={false}
-            />
-        ) : (
-            logo
-        )}
     </Link>
 );
 

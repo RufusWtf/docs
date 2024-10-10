@@ -22,7 +22,7 @@
   "viewport": {
     "themeColor": "#A855F7"
   },
-  "contentSource": "{process}/docs",
+  "contentSource": "https://git.rainnny.club/PulseApp/docs-content.git",
   "contentEditUrl": "https://git.rainnny.club/PulseApp/docs-content/src/branch/master/{slug}{ext}",
   "socialLinks": [
     {

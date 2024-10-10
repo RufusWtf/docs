@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./styles/globals.css";
 import { ReactElement, ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,13 +7,13 @@ import Sidebar from "@/components/sidebar/sidebar";
 import Footer from "@/components/footer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { getDocsContent } from "@/lib/mdx";
+import config from "@/config";
 
 /**
  * The metadata for this app.
  */
-// export const metadata: Metadata = config.metadata;
-export const metadata: Metadata = { title: "test", description: "testing" };
-// export const viewport: Viewport = config.viewport;
+export const metadata: Metadata = config.metadata;
+export const viewport: Viewport = config.viewport;
 
 export const dynamic = "force-dynamic";
 

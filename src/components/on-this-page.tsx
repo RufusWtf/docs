@@ -8,6 +8,7 @@ import { motion, useInView } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { AlignLeftIcon, ArrowUpFromDot, MoveRight } from "lucide-react";
+import config from "@/config";
 
 type Header = {
     id: string;
@@ -148,7 +149,9 @@ const Footer = ({ page }: { page: DocsContentMetadata }): ReactElement => {
             {/* Edit on Git */}
             <Link
                 className="flex gap-1.5 items-center text-xs hover:opacity-75 transition-all transform-gpu group"
-                href={`https://git.rainnny.club/PulseApp/docs/src/branch/master/docs/${page.slug}${page.extension}`}
+                href={config.contentEditUrl
+                    .replace("{slug}", page.slug as string)
+                    .replace("{ext}", page.extension as string)}
                 target="_blank"
                 draggable={false}
             >

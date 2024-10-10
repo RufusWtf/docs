@@ -23,6 +23,7 @@
     "themeColor": "#A855F7"
   },
   "contentSource": "{process}/docs",
+  "contentEditUrl": "https://git.rainnny.club/PulseApp/docs-content/src/branch/master/{slug}{ext}",
   "socialLinks": [
     {
       "name": "GitHub",

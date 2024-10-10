@@ -24,6 +24,11 @@ export type Config = {
     contentSource: string;
 
     /**
+     * The URL to link to for editing content of a page.
+     */
+    contentEditUrl: string;
+
+    /**
      * Social links for this app.
      */
     socialLinks: SocialLinkType[];

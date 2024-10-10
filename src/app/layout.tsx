@@ -30,9 +30,9 @@ const RootLayout = async ({
         <html lang="en">
             <body
                 className="scroll-smooth antialiased"
-                style={{
-                    background: "var(--background-gradient)",
-                }}
+                // style={{
+                //     background: "var(--background-gradient)",
+                // }}
             >
                 <ThemeProvider
                     attribute="class"

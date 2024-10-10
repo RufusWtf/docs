@@ -12,8 +12,11 @@ import config from "@/config";
 /**
  * The metadata for this app.
  */
-export const metadata: Metadata = config.metadata;
-export const viewport: Viewport = config.viewport;
+export const metadata: Metadata = config.metadata ?? {
+    title: "Pulse App",
+    description: "Public documentation for Pulse App!",
+};
+export const viewport: Viewport = config.viewport ?? {};
 
 export const dynamic = "force-dynamic";
 

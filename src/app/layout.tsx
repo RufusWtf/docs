@@ -26,12 +26,16 @@ const RootLayout = async ({
     const pages: DocsContentMetadata[] = await getDocsContent();
     return (
         <html lang="en">
-            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-                <body
-                    className="scroll-smooth antialiased"
-                    style={{
-                        background: "var(--background-gradient)",
-                    }}
+            <body
+                className="scroll-smooth antialiased"
+                style={{
+                    background: "var(--background-gradient)",
+                }}
+            >
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
                 >
                     <TooltipProvider delayDuration={100}>
                         <div className="px-3 md:px-7 max-w-screen-2xl min-h-screen mx-auto flex flex-col transition-all">
@@ -45,8 +49,8 @@ const RootLayout = async ({
                         </div>
                         <Footer />
                     </TooltipProvider>
-                </body>
-            </ThemeProvider>
+                </ThemeProvider>
+            </body>
         </html>
     );
 };

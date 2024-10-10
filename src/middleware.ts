@@ -4,7 +4,9 @@ export function middleware(request: NextRequest): NextResponse {
     const before: number = Date.now();
     const response: NextResponse = NextResponse.next();
     if (process.env.NODE_ENV === "production") {
-        const ip: string | null = request.headers.get("CF-Connecting-IP");
+        const ip: string | null =
+            request.headers.get("CF-Connecting-IP") ||
+            request.headers.get("X-Forwarded-For");
         console.log(
             `${ip} | ${request.method} ${request.nextUrl.pathname} ${response.status} in ${(Date.now() - before).toFixed(0)}ms`
         );

@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
-import { Separator } from "@/components/ui/separator";
 import SidebarLinks from "@/components/sidebar/sidebar-links";
-import ThemeSwitcher from "@/components/theme-switcher";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import { AlignRightIcon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import ThemeSwitcher from "@/components/theme-switcher";
 
 const Sidebar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
     <>

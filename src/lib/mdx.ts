@@ -75,18 +75,27 @@ const getMetadata = <T extends MDXMetadata>(
             const extension: string = path.extname(file); // The file extension
             return extension === ".md" || extension === ".mdx";
         }); // Read the MDX files
-    return files.map((file: string): T => {
+    const metadata: T[] = [];
+    for (let i = files.length - 1; i >= 0; i--) {
+        const file: string = files[i];
         const filePath: string = path.join(directory, file); // The path of the file
-        return {
+        const fileMetadata: T | undefined = parseMetadata<T>(
+            fs.readFileSync(filePath, "utf-8")
+        );
+        if (!fileMetadata) {
+            continue;
+        }
+        metadata.push({
             slug: filePath
                 .replace(parent, "")
                 .replace(/\\/g, "/") // Normalize the path
                 .replace(/\.mdx?$/, "")
                 .substring(1),
             extension: path.extname(file),
-            ...parseMetadata<T>(fs.readFileSync(filePath, "utf-8")),
-        }; // Map each file to its metadata
-    });
+            ...fileMetadata,
+        });
+    }
+    return metadata;
 };
 
 /**
@@ -97,8 +106,15 @@ const getMetadata = <T extends MDXMetadata>(
  * @returns the metadata and content
  * @template T the type of metadata
  */
-const parseMetadata = <T extends MDXMetadata>(content: string): T => {
-    const metadataBlock: string = METADATA_REGEX.exec(content)![1]; // Get the block of metadata
+const parseMetadata = <T extends MDXMetadata>(
+    content: string
+): T | undefined => {
+    const extracted = METADATA_REGEX.exec(content);
+    const metadataBlock: string | undefined =
+        extracted && extracted.length > 1 ? extracted[1] : undefined; // Get the block of metadata
+    if (!metadataBlock) {
+        return undefined;
+    }
     content = content.replace(METADATA_REGEX, "").trim(); // Remove the metadata block from the content
     const metadata: Partial<{
         [key: string]: string;

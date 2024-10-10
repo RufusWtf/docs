@@ -40,9 +40,9 @@ const RootLayout = async ({
                     enableSystem
                 >
                     <TooltipProvider delayDuration={100}>
-                        <div className="px-3 md:px-7 max-w-screen-2xl min-h-screen mx-auto flex flex-col transition-all">
+                        <div className="px-3 md:px-7 max-w-screen-2xl min-h-screen mx-auto flex flex-col">
                             <Navbar pages={pages} />
-                            <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5 sm:gap-8 transition-all transform-gpu">
+                            <div className="pt-[4.5rem] w-full h-full flex flex-grow gap-5 sm:gap-8">
                                 <div className="relative hidden xs:flex">
                                     <Sidebar pages={pages} />
                                 </div>

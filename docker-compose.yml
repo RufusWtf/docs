@@ -6,4 +6,5 @@ services:
     ports:
       - "8080:80"
     volumes:
+      - ./config.json:/usr/src/app/config.json
       - ./docs:/usr/src/app/docs

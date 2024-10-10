@@ -3,8 +3,6 @@ import SidebarLinks from "@/components/sidebar/sidebar-links";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import QuickSearchDialog from "@/components/navbar/search-dialog";
 import { AlignRightIcon } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import ThemeSwitcher from "@/components/theme-switcher";
 
 const Sidebar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
     <>
@@ -21,7 +19,7 @@ const Sidebar = ({ pages }: { pages: DocsContentMetadata[] }): ReactElement => (
         </div>
 
         {/* Desktop */}
-        <div className="hidden xs:flex sticky top-[4.5rem] max-h-[calc(100vh-3.5rem)] overflow-y-auto min-w-32 w-40 lg:w-52 py-5 flex-col justify-between transition-all transform-gpu">
+        <div className="hidden xs:flex sticky top-[4.5rem] max-h-[calc(100vh-3.5rem)] min-w-32 w-40 lg:w-52 py-5 flex-col justify-between transition-all transform-gpu overflow-y-auto">
             <SidebarContent pages={pages} />
         </div>
     </>
@@ -42,10 +40,10 @@ const SidebarContent = ({
         </div>
 
         {/* Theme Switcher */}
-        <div className="flex flex-col items-center">
-            <Separator className="mb-3 dark:bg-separator-gradient" />
-            <ThemeSwitcher />
-        </div>
+        {/*<div className="flex flex-col items-center">*/}
+        {/*    <Separator className="mb-3 dark:bg-separator-gradient" />*/}
+        {/*    <ThemeSwitcher />*/}
+        {/*</div>*/}
     </div>
 );
 

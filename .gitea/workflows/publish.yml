@@ -43,7 +43,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            git.rainnny.club/PulseApp/docs:${{ github.sha }}
-            git.rainnny.club/PulseApp/docs:latest
+            git.rainnny.club/pulseapp/docs:${{ github.sha }}
+            git.rainnny.club/pulseapp/docs:latest
           build-args: |
             GIT_REV=${{ gitea.sha }}

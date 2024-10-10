@@ -35,7 +35,9 @@ const getDocsDirectory = async (): Promise<string> => {
 
         // Pull the latest changes from the repo if we don't have it
         if (!fs.existsSync(cacheDir) || fs.readdirSync(cacheDir).length < 1) {
-            await simpleGit().clone(DOCS_DIR, cacheDir, { "--depth": 1 });
+            try {
+                await simpleGit().clone(DOCS_DIR, cacheDir, { "--depth": 1 });
+            } catch (error) {}
         }
         return cacheDir;
     }

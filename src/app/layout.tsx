@@ -15,6 +15,8 @@ import config from "@/config";
 export const metadata: Metadata = config.metadata;
 export const viewport: Viewport = config.viewport;
 
+export const dynamic = "force-dynamic";
+
 /**
  * The primary layout for this app.
  */

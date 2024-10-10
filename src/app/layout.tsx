@@ -38,6 +38,7 @@ const RootLayout = async ({
                     attribute="class"
                     defaultTheme="dark"
                     enableSystem
+                    disableTransitionOnChange
                 >
                     <TooltipProvider delayDuration={100}>
                         <div className="px-3 md:px-7 max-w-screen-2xl min-h-screen mx-auto flex flex-col">

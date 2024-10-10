@@ -1,0 +1,9 @@
+services:
+  app:
+    image: git.rainnny.club/pulseapp/docs:latest
+    restart: unless-stopped
+    container_name: docs
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docs:/usr/src/app/docs

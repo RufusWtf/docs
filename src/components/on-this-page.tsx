@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { AlignLeftIcon, ArrowUpFromDot, MoveRight } from "lucide-react";
 import config from "@/config";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Header = {
     id: string;
@@ -81,7 +82,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
         <motion.div
             ref={ref}
             className="sticky top-[7.5rem] w-44 max-h-[calc(100vh-3.5rem)] flex flex-col gap-2 text-sm select-none"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: inView ? 1 : 0 }}
             transition={{ duration: 0.2 }}
         >
@@ -93,37 +94,43 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
 
             {/* Headers */}
             <ul className="relative">
-                {headers.map((header: Header) => (
-                    <li
-                        key={header.id}
-                        className={cn(
-                            "hover:opacity-80 transition-all transform-gpu relative",
-                            activeHeader === header.id
-                                ? "font-semibold text-primary"
-                                : "opacity-65"
-                        )}
-                        style={{ paddingLeft: `${(header.level - 1) * 16}px` }}
-                    >
-                        {/* Indentation */}
-                        {header.level > 1 && (
-                            <div
-                                className="absolute left-0 top-0 bottom-0 border-l border-accent"
-                                style={{
-                                    left: `${(header.level - 2) * 16 + 4}px`,
-                                }}
-                            />
-                        )}
-
-                        {/* Header */}
-                        <Link
-                            href={`#${header.id}`}
-                            draggable={false}
-                            className="block py-1"
+                {headers.length === 0 ? (
+                    <Skeleton className="w-full h-5 bg-accent rounded-lg" />
+                ) : (
+                    headers.map((header: Header) => (
+                        <li
+                            key={header.id}
+                            className={cn(
+                                "hover:opacity-80 transition-all transform-gpu relative",
+                                activeHeader === header.id
+                                    ? "font-semibold text-primary"
+                                    : "opacity-65"
+                            )}
+                            style={{
+                                paddingLeft: `${(header.level - 1) * 16}px`,
+                            }}
                         >
-                            {truncateText(header.text, 20)}
-                        </Link>
-                    </li>
-                ))}
+                            {/* Indentation */}
+                            {header.level > 1 && (
+                                <div
+                                    className="absolute left-0 top-0 bottom-0 border-l border-accent"
+                                    style={{
+                                        left: `${(header.level - 2) * 16 + 4}px`,
+                                    }}
+                                />
+                            )}
+
+                            {/* Header */}
+                            <Link
+                                href={`#${header.id}`}
+                                draggable={false}
+                                className="block py-1"
+                            >
+                                {truncateText(header.text, 20)}
+                            </Link>
+                        </li>
+                    ))
+                )}
             </ul>
 
             {/* Footer */}

@@ -72,7 +72,7 @@ const CategoryItem = ({
                     >
                         <Button
                             className={cn(
-                                `relative w-full px-1.5 h-8 justify-between hover:bg-accent/35`,
+                                `relative w-full px-1.5 h-8 justify-between hover:bg-accent/35 hover:opacity-90`,
                                 node.isFolder
                                     ? "mb-0.5 text-sm font-semibold"
                                     : "lg:text-base",

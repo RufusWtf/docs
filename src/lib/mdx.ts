@@ -24,6 +24,13 @@ const DOCS_DIR: string = isGitUrl(config.contentSource)
     ? config.contentSource
     : path.join(config.contentSource.replace("{process}", process.cwd()));
 
+const LAST_UPDATE_FILE = path.join(
+    os.tmpdir(),
+    "docs_cache",
+    "last_update.json"
+);
+const UPDATE_INTERVAL_MS: number = 10 * 60 * 1000; // 10 minutes in milliseconds
+
 /**
  * Clone the Git repository if DOCS_DIR is a URL, else use the local directory.
  * If it's a Git URL, clone it to a cache directory and reuse it.
@@ -35,13 +42,38 @@ const getDocsDirectory = async (): Promise<string> => {
 
         // Pull the latest changes from the repo if we don't have it
         if (!fs.existsSync(cacheDir) || fs.readdirSync(cacheDir).length < 1) {
+            console.log("Fetching initial docs from Git...");
             try {
                 await simpleGit().clone(DOCS_DIR, cacheDir, { "--depth": 1 });
-            } catch (error) {}
+            } catch (error) {
+                // Simply ignore this error. When cloning the repo for
+                // the first time, it'll sometimes error saying the dir
+                // is already created.
+            }
+        } else if (shouldUpdateRepo()) {
+            // Pull the latest changes from Git
+            console.log("Updating docs content from Git...");
+            await simpleGit().pull(cacheDir);
+            fs.writeFileSync(
+                LAST_UPDATE_FILE,
+                JSON.stringify({ lastUpdate: Date.now() }),
+                "utf-8"
+            );
         }
         return cacheDir;
     }
     return DOCS_DIR;
+};
+
+const shouldUpdateRepo = (): boolean => {
+    if (!fs.existsSync(LAST_UPDATE_FILE)) {
+        return true;
+    }
+    return (
+        Date.now() -
+            JSON.parse(fs.readFileSync(LAST_UPDATE_FILE, "utf-8")).lastUpdate >
+        UPDATE_INTERVAL_MS
+    );
 };
 
 /**

@@ -34,7 +34,7 @@ const DocsPage = async ({
     const decodedSlug: string = decodeURIComponent(slug || "");
     const page: DocsContentMetadata | undefined = pages.find(
         (metadata: DocsContentMetadata): boolean =>
-            metadata.slug === (decodedSlug || "intro")
+            metadata.slug === (decodedSlug || pages[0].slug)
     );
     if (!page) {
         notFound();

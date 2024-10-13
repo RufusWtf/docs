@@ -22,7 +22,7 @@ const SidebarLinks = ({
     return (
         <div className="flex flex-col gap-1">
             {Object.values(tree).map((node: TreeNode) => (
-                <CategoryItem key={node.slug} node={node} />
+                <CategoryItem key={node.slug} pages={pages} node={node} />
             ))}
         </div>
     );
@@ -36,17 +36,20 @@ type TreeNode = {
 };
 
 const CategoryItem = ({
+    pages,
     node,
     depth = 0,
     isLast = true,
 }: {
+    pages: DocsContentMetadata[];
     node: TreeNode;
     depth?: number;
     isLast?: boolean;
 }) => {
     const path = decodeURIComponent(usePathname());
     const active =
-        (path === "/" && node.slug === "intro") || path === `/${node.slug}`;
+        (path === "/" && node.slug === pages[0].slug) ||
+        path === `/${node.slug}`;
     const [isOpen, setIsOpen] = useState(true);
     const hasChildren = Object.keys(node.children).length > 0;
 
@@ -121,6 +124,7 @@ const CategoryItem = ({
                                     (child, index, array) => (
                                         <CategoryItem
                                             key={child.slug}
+                                            pages={pages}
                                             node={child}
                                             depth={depth + 1}
                                             isLast={index === array.length - 1}

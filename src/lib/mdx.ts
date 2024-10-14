@@ -44,7 +44,7 @@ const getDocsDirectory = cache(async (): Promise<string> => {
 
         // Pull the latest changes from the repo if we don't have it
         if (!fs.existsSync(cacheDir) || fs.readdirSync(cacheDir).length < 1) {
-            console.log("Fetching initial docs from Git...");
+            console.log("Cloning initial docs content from Git...");
             try {
                 await simpleGit().clone(DOCS_DIR, cacheDir, { "--depth": 1 });
                 storeUpdatedRepoTime();
@@ -55,7 +55,7 @@ const getDocsDirectory = cache(async (): Promise<string> => {
             }
         } else if (shouldUpdateRepo()) {
             // Pull the latest changes from Git
-            console.log("Updating docs content from Git...");
+            console.log("Pulling docs content from Git...");
             await simpleGit(cacheDir)
                 .reset(["--hard"]) // Reset any local changes
                 .pull(); // Pull latest changes

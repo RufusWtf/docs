@@ -18,6 +18,7 @@ type Header = {
 };
 
 const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
+    const [loading, setLoading] = useState<boolean>(true);
     const [headers, setHeaders] = useState<Header[]>([]);
     const [activeHeader, setActiveHeader] = useState<string | undefined>(
         undefined
@@ -45,6 +46,7 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
         }
 
         setHeaders(extractedHeaders);
+        setLoading(false);
     }, [page.content]);
 
     useEffect(() => {
@@ -94,8 +96,10 @@ const OnThisPage = ({ page }: { page: DocsContentMetadata }): ReactElement => {
 
             {/* Headers */}
             <ul className="relative">
-                {headers.length === 0 ? (
+                {loading ? (
                     <Skeleton className="w-full h-5 bg-accent rounded-lg" />
+                ) : headers.length === 0 ? (
+                    <span className="opacity-75">Nothing ):</span>
                 ) : (
                     headers.map((header: Header) => (
                         <li

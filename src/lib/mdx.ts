@@ -31,7 +31,7 @@ const LAST_UPDATE_FILE = path.join(
     "docs_cache",
     "last_update.json"
 );
-const UPDATE_INTERVAL_MS: number = 10 * 60 * 1000; // 10 minutes in milliseconds
+const CACHE_DURATION_MS: number = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 /**
  * Clone the Git repository if DOCS_DIR is a URL, else use the local directory.
@@ -73,7 +73,7 @@ const shouldUpdateRepo = (): boolean => {
     return (
         Date.now() -
             JSON.parse(fs.readFileSync(LAST_UPDATE_FILE, "utf-8")).lastUpdate >
-        UPDATE_INTERVAL_MS
+        CACHE_DURATION_MS
     );
 };
 

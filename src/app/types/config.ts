@@ -7,6 +7,11 @@ export type Config = {
     siteName: string;
 
     /**
+     * The URL to use for generating OG images.
+     */
+    ogApiUrl: string;
+
+    /**
      * The metadata for this app.
      */
     metadata: Metadata;

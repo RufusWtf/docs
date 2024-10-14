@@ -14,6 +14,7 @@ import { Metadata } from "next";
 import Embed from "@/components/embed";
 import DocsFooter from "@/components/docs-footer";
 import OnThisPage from "@/components/on-this-page";
+import config from "@/config";
 
 /**
  * The page to render the documentation markdown content.
@@ -110,6 +111,7 @@ export const generateMetadata = async ({
             return Embed({
                 title: content.title,
                 description: content.summary,
+                thumbnail: config.ogApiUrl.replace("{title}", content.title),
             });
         }
     }

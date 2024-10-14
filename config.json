@@ -1,5 +1,6 @@
 {
   "siteName": "Pulse App",
+  "ogApiUrl": "https://docs.pulseapp.cc/api/og?title={title}",
   "metadata": {
     "title": {
       "default": "Pulse Docs",

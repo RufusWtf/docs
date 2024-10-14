@@ -4,6 +4,8 @@ import path from "node:path";
 import config from "@/config";
 import simpleGit from "simple-git";
 import os from "node:os";
+import { cache } from "react";
+import "server-only";
 
 /**
  * The regex to match for metadata.
@@ -35,7 +37,8 @@ const UPDATE_INTERVAL_MS: number = 10 * 60 * 1000; // 10 minutes in milliseconds
  * Clone the Git repository if DOCS_DIR is a URL, else use the local directory.
  * If it's a Git URL, clone it to a cache directory and reuse it.
  */
-const getDocsDirectory = async (): Promise<string> => {
+const getDocsDirectory = cache(async (): Promise<string> => {
+    console.log("retrieve docs dir");
     if (isGitUrl(DOCS_DIR)) {
         const repoHash: string = Buffer.from(DOCS_DIR).toString("base64"); // Create a unique identifier based on the repo URL
         const cacheDir: string = path.join(os.tmpdir(), "docs_cache", repoHash);
@@ -45,6 +48,7 @@ const getDocsDirectory = async (): Promise<string> => {
             console.log("Fetching initial docs from Git...");
             try {
                 await simpleGit().clone(DOCS_DIR, cacheDir, { "--depth": 1 });
+                storeUpdatedRepoTime();
             } catch (error) {
                 // Simply ignore this error. When cloning the repo for
                 // the first time, it'll sometimes error saying the dir
@@ -53,17 +57,15 @@ const getDocsDirectory = async (): Promise<string> => {
         } else if (shouldUpdateRepo()) {
             // Pull the latest changes from Git
             console.log("Updating docs content from Git...");
-            await simpleGit().pull(cacheDir);
-            fs.writeFileSync(
-                LAST_UPDATE_FILE,
-                JSON.stringify({ lastUpdate: Date.now() }),
-                "utf-8"
-            );
+            await simpleGit(cacheDir)
+                .reset(["--hard"]) // Reset any local changes
+                .pull(); // Pull latest changes
+            storeUpdatedRepoTime();
         }
         return cacheDir;
     }
     return DOCS_DIR;
-};
+});
 
 const shouldUpdateRepo = (): boolean => {
     if (!fs.existsSync(LAST_UPDATE_FILE)) {
@@ -75,6 +77,13 @@ const shouldUpdateRepo = (): boolean => {
         UPDATE_INTERVAL_MS
     );
 };
+
+const storeUpdatedRepoTime = () =>
+    fs.writeFileSync(
+        LAST_UPDATE_FILE,
+        JSON.stringify({ lastUpdate: Date.now() }),
+        "utf-8"
+    );
 
 /**
  * Get the content to display in the docs.

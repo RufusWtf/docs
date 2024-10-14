@@ -38,7 +38,6 @@ const UPDATE_INTERVAL_MS: number = 10 * 60 * 1000; // 10 minutes in milliseconds
  * If it's a Git URL, clone it to a cache directory and reuse it.
  */
 const getDocsDirectory = cache(async (): Promise<string> => {
-    console.log("retrieve docs dir");
     if (isGitUrl(DOCS_DIR)) {
         const repoHash: string = Buffer.from(DOCS_DIR).toString("base64"); // Create a unique identifier based on the repo URL
         const cacheDir: string = path.join(os.tmpdir(), "docs_cache", repoHash);

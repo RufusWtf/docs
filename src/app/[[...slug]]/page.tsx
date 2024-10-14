@@ -100,18 +100,19 @@ export const generateMetadata = async ({
 }): Promise<Metadata | undefined> => {
     const slug: string = (((await params).slug as string[]) || undefined)?.join(
         "/"
-    ); // The slug of the content
+    );
     if (slug) {
-        const content: DocsContentMetadata | undefined = (
-            await getDocsContent()
-        ).find(
-            (metadata: DocsContentMetadata): boolean => metadata.slug === slug
-        ); // Get the content based on the provided slug
-        if (content) {
+        const pages: DocsContentMetadata[] = await getDocsContent();
+        const decodedSlug: string = decodeURIComponent(slug || "");
+        const page: DocsContentMetadata | undefined = pages.find(
+            (metadata: DocsContentMetadata): boolean =>
+                metadata.slug === (decodedSlug || pages[0].slug)
+        );
+        if (page) {
             return Embed({
-                title: content.title,
-                description: content.summary,
-                thumbnail: config.ogApiUrl.replace("{title}", content.title),
+                title: page.title,
+                description: page.summary,
+                thumbnail: config.ogApiUrl.replace("{title}", page.title),
             });
         }
     }

@@ -1,73 +1,73 @@
 {
-  2	  "siteName": "Rufus",
-  3	  "ogApiUrl": "https://docs.rufusbot.wtf/api/og?title={title}",
-  4	  "metadata": {
-  5	    "title": {
-  6	      "default": "Rufus Docs",
-  7	      "template": "%s • Rufus Docs"
-  8	    },
-  9	    "description": "A smart and efficient Discord bot that streamlines ticket management for your server.",
-  10	    "openGraph": {
-  11	      "images": [
-  12	        {
-  13	          "url": "https://cdn.rainnny.club/rufus.png",
-  14	          "width": 128,
-  15	          "height": 128
-  16	        }
-  17	      ]
-  18	    },
-  19	    "twitter": {
-  20	      "card": "summary"
-  21	    }
-  22	  },
-  23	  "viewport": {
-  24	    "themeColor": "#A855F7"
-  25	  },
-  26	  "contentSource": "https://github.com/RufusWtf/docs-content.git",
-  27	  "contentEditUrl": "https://github.com/RufusWtf/docs/blob/master/{slug}{ext}",
-  28	  "socialLinks": [
-  29	    {
-  30	      "name": "GitHub",
-  31	      "tooltip": "View our Github",
-  32	      "logo": "./github.svg",
-  33	      "href": "https://github.com/RufusWtf",
-  34	      "navbar": true
-  35	    },
-  36	    {
-  37	      "name": "Discord",
-  38	      "tooltip": "Join our Discord",
-  39	      "logo": "./discord.svg",
-  40	      "href": "https://discord.rufusbot.wtf",
-  41	      "navbar": true
-  42	    }
-  43	  ],
-  44	  "footer": {
-  45	    "homeUrl": "https://rufusbot.wtf",
-  46	    "links": {
-  47	      "Resources": [
-  48	        {
-  49	          "name": "Support",
-  50	          "href": "https://discord.rufusbot.wtf"
-  51	        },
-  52	        {
-  53	          "name": "System Status",
-  54	          "shortName": "Status",
-  55	          "href": "https://rufusbot.wtf/status",
-  56	          "external": true
-  57	        }
-  58	      ],
-  59	      "Legal": [
-  60	        {
-  61	          "name": "Terms & Conditions",
-  62	          "shortName": "Terms",
-  63	          "href": "/legal/terms"
-  64	        },
-  65	        {
-  66	          "name": "Privacy Policy",
-  67	          "shortName": "Privacy",
-  68	          "href": "/legal/privacy"
-  69	        }
-  70	      ]
-  71	    }
-  72	  }
-  73	}
+    "siteName": "Rufus",
+    "ogApiUrl": "https://docs.rufusbot.wtf/api/og?title={title}",
+    "metadata": {
+        "title": {
+            "default": "Rufus Docs",
+            "template": "%s • Rufus Docs"
+        },
+        "description": "A smart and efficient Discord bot that streamlines ticket management for your server.",
+        "openGraph": {
+            "images": [
+                {
+                    "url": "https://cdn.rainnny.club/rufus.png",
+                    "width": 128,
+                    "height": 128
+                }
+            ]
+        },
+        "twitter": {
+            "card": "summary"
+        }
+    },
+    "viewport": {
+        "themeColor": "#A855F7"
+    },
+    "contentSource": "https://github.com/RufusWtf/docs-content.git",
+    "contentEditUrl": "https://github.com/RufusWtf/docs/blob/master/{slug}{ext}",
+    "socialLinks": [
+        {
+            "name": "GitHub",
+            "tooltip": "View our Github",
+            "logo": "./github.svg",
+            "href": "https://github.com/RufusWtf",
+            "navbar": true
+        },
+        {
+            "name": "Discord",
+            "tooltip": "Join our Discord",
+            "logo": "./discord.svg",
+            "href": "https://discord.rufusbot.wtf",
+            "navbar": true
+        }
+    ],
+    "footer": {
+        "homeUrl": "https://rufusbot.wtf",
+        "links": {
+            "Resources": [
+                {
+                    "name": "Support",
+                    "href": "https://discord.rufusbot.wtf"
+                },
+                {
+                    "name": "System Status",
+                    "shortName": "Status",
+                    "href": "https://rufusbot.wtf/status",
+                    "external": true
+                }
+            ],
+            "Legal": [
+                {
+                    "name": "Terms & Conditions",
+                    "shortName": "Terms",
+                    "href": "/legal/terms"
+                },
+                {
+                    "name": "Privacy Policy",
+                    "shortName": "Privacy",
+                    "href": "/legal/privacy"
+                }
+            ]
+        }
+    }
+}

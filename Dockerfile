@@ -32,7 +32,6 @@ COPY --from=builder --chown=nextjs:nextjs /usr/src/app/.next ./.next
 COPY --from=builder --chown=nextjs:nextjs /usr/src/app/public ./public
 COPY --from=builder --chown=nextjs:nextjs /usr/src/app/next.config.mjs ./next.config.mjs
 COPY --from=builder --chown=nextjs:nextjs /usr/src/app/package.json ./package.json
-COPY --from=builder --chown=nextjs:nextjs /usr/src/app/docs ./docs
 
 ENV NODE_ENV=production
 

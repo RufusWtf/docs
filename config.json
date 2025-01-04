@@ -21,7 +21,7 @@
         }
     },
     "viewport": {
-        "themeColor": "#A855F7"
+        "themeColor": "#FBCEC8"
     },
     "contentSource": "https://github.com/RufusWtf/docs-content.git",
     "contentEditUrl": "https://github.com/RufusWtf/docs/blob/master/{slug}{ext}",

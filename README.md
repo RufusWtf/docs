@@ -1,2 +1,2 @@
 # docs
-The source coded for the Pulse App documentation site.
+ The source coded for the Rufus documentation site. 

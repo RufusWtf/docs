@@ -5,7 +5,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "cdn.pulseapp.cc",
+                hostname: "cdn.rainnny.club",
             },
         ],
     },
